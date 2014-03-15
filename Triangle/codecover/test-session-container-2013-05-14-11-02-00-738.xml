@@ -1,0 +1,2561 @@
+<?xml version="1.0" encoding="UTF-8"?><TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1368500520630" TestSessionContainerId="3b53fcf8-1470-4216-974d-b7a7d7b0e660" version="1.0">
+<SrcFileList>
+<SrcFile Content="public class Triangle {&#13;&#10;&#9;// 定义三角形的三边&#13;&#10;&#9;protected long lborderA = 0;&#13;&#10;&#13;&#10;&#9;protected long lborderB = 0;&#13;&#10;&#13;&#10;&#9;protected long lborderC = 0;&#13;&#10;&#13;&#10;&#9;// 构造函数&#13;&#10;&#9;public Triangle(long lborderA, long lborderB, long lborderC) {&#13;&#10;&#13;&#10;&#9;&#9;this.lborderA = lborderA;&#13;&#10;&#13;&#10;&#9;&#9;this.lborderB = lborderB;&#13;&#10;&#13;&#10;&#9;&#9;this.lborderC = lborderC;&#13;&#10;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * 判断是否是三角形&#13;&#10;&#9; * &#13;&#10;&#9; * 是返回true；不是返回false&#13;&#10;&#9; */&#13;&#10;&#9;public boolean isTriangle(Triangle triangle) {&#13;&#10;&#9;&#9;boolean isTriangle = false;&#13;&#10;&#13;&#10;&#9;&#9;// 判断边界，大于0 小于或等于Long.MAX_VALUE，出界返回false&#13;&#10;&#9;&#9;if ((triangle.lborderA &gt; 0 &amp;&amp; triangle.lborderA &lt;= Long.MAX_VALUE)&#13;&#10;&#9;&#9;&#9;&#9;&amp;&amp; (triangle.lborderB &gt; 0 &amp;&amp; triangle.lborderB &lt;= Long.MAX_VALUE)&#13;&#10;&#9;&#9;&#9;&#9;&amp;&amp; (triangle.lborderC &gt; 0 &amp;&amp; triangle.lborderC &lt;= Long.MAX_VALUE)) {&#13;&#10;&#13;&#10;&#9;&#9;&#9;// 判断两边之差小于第三边&#13;&#10;&#9;&#9;&#9;if (diffOfBorders(triangle.lborderA, triangle.lborderB) &lt; triangle.lborderC&#13;&#10;&#9;&#9;&#9;&#9;&#9;&amp;&amp; diffOfBorders(triangle.lborderB, triangle.lborderC) &lt; triangle.lborderA&#13;&#10;&#9;&#9;&#9;&#9;&#9;&amp;&amp; diffOfBorders(triangle.lborderC, triangle.lborderA) &lt; triangle.lborderB) {&#13;&#10;&#9;&#9;&#9;&#9;isTriangle = true;&#13;&#10;&#9;&#9;&#9;}&#13;&#10;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;return isTriangle;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * 判断三角形类型&#13;&#10;&#9; * &#13;&#10;&#9; * 只有两条边相等的三角形返回字符串“等腰三角形”； 三边均相等的三角形返回字符串“等边三角形”； 三边均不等的三角形返回字符串“不等边三角形”；&#13;&#10;&#9; */&#13;&#10;&#9;public String getType(Triangle triangle) {&#13;&#10;&#9;&#9;String strType = &quot;不是三角形&quot;;&#13;&#10;&#13;&#10;&#9;&#9;// 判断是否是三角形&#13;&#10;&#9;&#9;if (isTriangle(triangle)) {&#13;&#10;&#9;&#9;&#9;// 判断是否是等边三角形&#13;&#10;&#9;&#9;&#9;if (triangle.lborderA == triangle.lborderB&#13;&#10;&#9;&#9;&#9;&#9;&#9;&amp;&amp; triangle.lborderB == triangle.lborderC) {&#13;&#10;&#9;&#9;&#9;&#9;strType = &quot;等边三角形&quot;;&#13;&#10;&#9;&#9;&#9;}&#13;&#10;&#9;&#9;&#9;// 判断是否是不等边三角形&#13;&#10;&#9;&#9;&#9;else if ((triangle.lborderA != triangle.lborderB)&#13;&#10;&#9;&#9;&#9;&#9;&#9;&amp;&amp; (triangle.lborderB != triangle.lborderC)&#13;&#10;&#9;&#9;&#9;&#9;&#9;&amp;&amp; (triangle.lborderA != triangle.lborderC)) {&#13;&#10;&#9;&#9;&#9;&#9;strType = &quot;不等边三角形&quot;;&#13;&#10;&#9;&#9;&#9;}&#13;&#10;&#9;&#9;&#9;// 三角形既非三边全部相等，又非全部不等，只能是部分相等即等腰三角形&#13;&#10;&#9;&#9;&#9;else {&#13;&#10;&#9;&#9;&#9;&#9;strType = &quot;等腰三角形&quot;;&#13;&#10;&#9;&#9;&#9;}&#13;&#10;&#9;&#9;}&#13;&#10;&#13;&#10;&#9;&#9;return strType;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * 计算两边之差的绝对值&#13;&#10;&#9; * &#13;&#10;&#9; * */&#13;&#10;&#9;public long diffOfBorders(long a, long b) {&#13;&#10;&#9;&#9;return (a &gt; b) ? (a - b) : (b - a);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;/**&#13;&#10;&#9; * 用于获取三角形的边长&#13;&#10;&#9; */&#13;&#10;&#9;public long[] getBorders() {&#13;&#10;&#9;&#9;long[] borders = new long[3];&#13;&#10;&#9;&#9;borders[0] = this.lborderA;&#13;&#10;&#9;&#9;borders[1] = this.lborderB;&#13;&#10;&#9;&#9;borders[2] = this.lborderC;&#13;&#10;&#9;&#9;return borders;&#13;&#10;&#9;}&#13;&#10;}" Filename="Triangle.java" Intrnl_Id="1"/>
+</SrcFileList>
+<CritList>
+<CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.BranchCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.ConditionCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.SynchronizedStatementCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.QMOCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.StatementCoverage" PluginName="org.codecover"/>
+</CritList>
+<BoolOpList>
+<BoolOp Arity="2" Intrnl_Id="2" Name="conditional and (&amp;&amp;)">
+<BoolAssgnmntBoolMapList>
+<MapEntry BoolAssgnmnt="10" Value="false"/>
+<MapEntry BoolAssgnmnt="02" Value="false"/>
+<MapEntry BoolAssgnmnt="11" Value="true"/>
+</BoolAssgnmntBoolMapList>
+</BoolOp>
+</BoolOpList>
+<HierarchyLvlTypeList>
+<HierarchyLvlType EnglishName="class" IntrnlName="class" Intrnl_Id="3"/>
+<HierarchyLvlType EnglishName="method" IntrnlName="method" Intrnl_Id="4"/>
+<HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="5"/>
+</HierarchyLvlTypeList>
+<MASTRoot>
+<HierarchyLvl HierarchyLvlId="7417" HierarchyLvlTypeId="5" Intrnl_Id="6" Name="default package">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="7416" HierarchyLvlTypeId="3" Intrnl_Id="7" Name="Triangle">
+<Header>
+<Loc EndOffset="21" SrcFileId="1" StartOffset="0"/>
+</Header>
+<LocList>
+<Loc EndOffset="2074" SrcFileId="1" StartOffset="0"/>
+</LocList>
+<StmntSeq Intrnl_Id="8">
+<LocList>
+<Loc EndOffset="68" SrcFileId="1" StartOffset="40"/>
+<Loc EndOffset="101" SrcFileId="1" StartOffset="73"/>
+<Loc EndOffset="134" SrcFileId="1" StartOffset="106"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="Triangle.java" Intrnl_Id="9">
+<LocList>
+<Loc EndOffset="68" SrcFileId="1" StartOffset="40"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="Triangle.java" Intrnl_Id="10">
+<LocList>
+<Loc EndOffset="101" SrcFileId="1" StartOffset="73"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="Triangle.java" Intrnl_Id="11">
+<LocList>
+<Loc EndOffset="134" SrcFileId="1" StartOffset="106"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+<HierarchyLvl HierarchyLvlId="7411" HierarchyLvlTypeId="4" Intrnl_Id="12" Name="Triangle">
+<Header>
+<Loc EndOffset="209" SrcFileId="1" StartOffset="149"/>
+</Header>
+<LocList>
+<Loc EndOffset="310" SrcFileId="1" StartOffset="149"/>
+</LocList>
+<StmntSeq Intrnl_Id="13">
+<LocList>
+<Loc EndOffset="242" SrcFileId="1" StartOffset="217"/>
+<Loc EndOffset="273" SrcFileId="1" StartOffset="248"/>
+<Loc EndOffset="304" SrcFileId="1" StartOffset="279"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="Triangle.java" Intrnl_Id="14">
+<LocList>
+<Loc EndOffset="242" SrcFileId="1" StartOffset="217"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S5" CovItemPrefix="Triangle.java" Intrnl_Id="15">
+<LocList>
+<Loc EndOffset="273" SrcFileId="1" StartOffset="248"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="Triangle.java" Intrnl_Id="16">
+<LocList>
+<Loc EndOffset="304" SrcFileId="1" StartOffset="279"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="7412" HierarchyLvlTypeId="4" Intrnl_Id="17" Name="isTriangle">
+<Header>
+<Loc EndOffset="414" SrcFileId="1" StartOffset="370"/>
+</Header>
+<LocList>
+<Loc EndOffset="1038" SrcFileId="1" StartOffset="370"/>
+</LocList>
+<StmntSeq Intrnl_Id="18">
+<LocList>
+<Loc EndOffset="447" SrcFileId="1" StartOffset="420"/>
+<Loc EndOffset="1012" SrcFileId="1" StartOffset="498"/>
+<Loc EndOffset="1034" SrcFileId="1" StartOffset="1016"/>
+</LocList>
+<BasicStmnt CovItemId="S7" CovItemPrefix="Triangle.java" Intrnl_Id="19">
+<LocList>
+<Loc EndOffset="447" SrcFileId="1" StartOffset="420"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S8" CovItemPrefix="Triangle.java" Intrnl_Id="20">
+<Branch CovItemId="B1" CovItemPrefix="Triangle.java" Implct="false" Intrnl_Id="21">
+<Cond/>
+<LocList>
+<Loc EndOffset="1012" SrcFileId="1" StartOffset="708"/>
+</LocList>
+<StmntSeq Intrnl_Id="22">
+<LocList>
+<Loc EndOffset="1005" SrcFileId="1" StartOffset="735"/>
+</LocList>
+<CondStmnt CovItemId="S9" CovItemPrefix="Triangle.java" Intrnl_Id="23">
+<Branch CovItemId="B3" CovItemPrefix="Triangle.java" Implct="false" Intrnl_Id="24">
+<Cond/>
+<LocList>
+<Loc EndOffset="1005" SrcFileId="1" StartOffset="974"/>
+</LocList>
+<StmntSeq Intrnl_Id="25">
+<LocList>
+<Loc EndOffset="999" SrcFileId="1" StartOffset="981"/>
+</LocList>
+<BasicStmnt CovItemId="S10" CovItemPrefix="Triangle.java" Intrnl_Id="26">
+<LocList>
+<Loc EndOffset="999" SrcFileId="1" StartOffset="981"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="Triangle.java" Implct="true" Intrnl_Id="27">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="28">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="737" SrcFileId="1" StartOffset="735"/>
+<LocList>
+<Loc EndOffset="1005" SrcFileId="1" StartOffset="735"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="Triangle.java" Intrnl_Id="29">
+<OpTerm BooleanOpId="2" Intrnl_Id="30">
+<OpTerm BooleanOpId="2" Intrnl_Id="31">
+<BasicBoolTerm Intrnl_Id="32">
+<LocList>
+<Loc EndOffset="810" SrcFileId="1" StartOffset="739"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="33">
+<LocList>
+<Loc EndOffset="891" SrcFileId="1" StartOffset="820"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="819" SrcFileId="1" StartOffset="817"/>
+</LocList>
+</OpTerm>
+<BasicBoolTerm Intrnl_Id="34">
+<LocList>
+<Loc EndOffset="972" SrcFileId="1" StartOffset="901"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="900" SrcFileId="1" StartOffset="898"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="Triangle.java" Implct="true" Intrnl_Id="35">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="36">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="500" SrcFileId="1" StartOffset="498"/>
+<LocList>
+<Loc EndOffset="1012" SrcFileId="1" StartOffset="498"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="Triangle.java" Intrnl_Id="37">
+<OpTerm BooleanOpId="2" Intrnl_Id="38">
+<OpTerm BooleanOpId="2" Intrnl_Id="39">
+<OpTerm BooleanOpId="2" Intrnl_Id="40">
+<BasicBoolTerm Intrnl_Id="41">
+<LocList>
+<Loc EndOffset="524" SrcFileId="1" StartOffset="503"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="42">
+<LocList>
+<Loc EndOffset="563" SrcFileId="1" StartOffset="528"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="527" SrcFileId="1" StartOffset="525"/>
+</LocList>
+</OpTerm>
+<OpTerm BooleanOpId="2" Intrnl_Id="43">
+<BasicBoolTerm Intrnl_Id="44">
+<LocList>
+<Loc EndOffset="595" SrcFileId="1" StartOffset="574"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="45">
+<LocList>
+<Loc EndOffset="634" SrcFileId="1" StartOffset="599"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="598" SrcFileId="1" StartOffset="596"/>
+</LocList>
+</OpTerm>
+<LocList>
+<Loc EndOffset="572" SrcFileId="1" StartOffset="570"/>
+</LocList>
+</OpTerm>
+<OpTerm BooleanOpId="2" Intrnl_Id="46">
+<BasicBoolTerm Intrnl_Id="47">
+<LocList>
+<Loc EndOffset="666" SrcFileId="1" StartOffset="645"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="48">
+<LocList>
+<Loc EndOffset="705" SrcFileId="1" StartOffset="670"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="669" SrcFileId="1" StartOffset="667"/>
+</LocList>
+</OpTerm>
+<LocList>
+<Loc EndOffset="643" SrcFileId="1" StartOffset="641"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S11" CovItemPrefix="Triangle.java" Intrnl_Id="49">
+<LocList>
+<Loc EndOffset="1034" SrcFileId="1" StartOffset="1016"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="7413" HierarchyLvlTypeId="4" Intrnl_Id="50" Name="getType">
+<Header>
+<Loc EndOffset="1191" SrcFileId="1" StartOffset="1151"/>
+</Header>
+<LocList>
+<Loc EndOffset="1734" SrcFileId="1" StartOffset="1151"/>
+</LocList>
+<StmntSeq Intrnl_Id="51">
+<LocList>
+<Loc EndOffset="1222" SrcFileId="1" StartOffset="1197"/>
+<Loc EndOffset="1709" SrcFileId="1" StartOffset="1243"/>
+<Loc EndOffset="1730" SrcFileId="1" StartOffset="1715"/>
+</LocList>
+<BasicStmnt CovItemId="S12" CovItemPrefix="Triangle.java" Intrnl_Id="52">
+<LocList>
+<Loc EndOffset="1222" SrcFileId="1" StartOffset="1197"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S13" CovItemPrefix="Triangle.java" Intrnl_Id="53">
+<Branch CovItemId="B5" CovItemPrefix="Triangle.java" Implct="false" Intrnl_Id="54">
+<Cond/>
+<LocList>
+<Loc EndOffset="1709" SrcFileId="1" StartOffset="1269"/>
+</LocList>
+<StmntSeq Intrnl_Id="55">
+<LocList>
+<Loc EndOffset="1704" SrcFileId="1" StartOffset="1293"/>
+</LocList>
+<CondStmnt CovItemId="S14" CovItemPrefix="Triangle.java" Intrnl_Id="56">
+<Branch CovItemId="B7" CovItemPrefix="Triangle.java" Implct="false" Intrnl_Id="57">
+<Cond/>
+<LocList>
+<Loc EndOffset="1416" SrcFileId="1" StartOffset="1385"/>
+</LocList>
+<StmntSeq Intrnl_Id="58">
+<LocList>
+<Loc EndOffset="1410" SrcFileId="1" StartOffset="1392"/>
+</LocList>
+<BasicStmnt CovItemId="S15" CovItemPrefix="Triangle.java" Intrnl_Id="59">
+<LocList>
+<Loc EndOffset="1410" SrcFileId="1" StartOffset="1392"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B8" CovItemPrefix="Triangle.java" Implct="false" Intrnl_Id="60">
+<Cond>
+<Loc EndOffset="1444" SrcFileId="1" StartOffset="1440"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1704" SrcFileId="1" StartOffset="1445"/>
+</LocList>
+<StmntSeq Intrnl_Id="61">
+<LocList>
+<Loc EndOffset="1704" SrcFileId="1" StartOffset="1445"/>
+</LocList>
+<CondStmnt CovItemId="S16" CovItemPrefix="Triangle.java" Intrnl_Id="62">
+<Branch CovItemId="B9" CovItemPrefix="Triangle.java" Implct="false" Intrnl_Id="63">
+<Cond/>
+<LocList>
+<Loc EndOffset="1623" SrcFileId="1" StartOffset="1591"/>
+</LocList>
+<StmntSeq Intrnl_Id="64">
+<LocList>
+<Loc EndOffset="1617" SrcFileId="1" StartOffset="1598"/>
+</LocList>
+<BasicStmnt CovItemId="S17" CovItemPrefix="Triangle.java" Intrnl_Id="65">
+<LocList>
+<Loc EndOffset="1617" SrcFileId="1" StartOffset="1598"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B10" CovItemPrefix="Triangle.java" Implct="false" Intrnl_Id="66">
+<Cond>
+<Loc EndOffset="1672" SrcFileId="1" StartOffset="1668"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1704" SrcFileId="1" StartOffset="1673"/>
+</LocList>
+<StmntSeq Intrnl_Id="67">
+<LocList>
+<Loc EndOffset="1698" SrcFileId="1" StartOffset="1680"/>
+</LocList>
+<BasicStmnt CovItemId="S18" CovItemPrefix="Triangle.java" Intrnl_Id="68">
+<LocList>
+<Loc EndOffset="1698" SrcFileId="1" StartOffset="1680"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1447" SrcFileId="1" StartOffset="1445"/>
+<LocList>
+<Loc EndOffset="1704" SrcFileId="1" StartOffset="1445"/>
+</LocList>
+<RootTerm CovItemId="C5" CovItemPrefix="Triangle.java" Intrnl_Id="69">
+<OpTerm BooleanOpId="2" Intrnl_Id="70">
+<OpTerm BooleanOpId="2" Intrnl_Id="71">
+<BasicBoolTerm Intrnl_Id="72">
+<LocList>
+<Loc EndOffset="1488" SrcFileId="1" StartOffset="1450"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="73">
+<LocList>
+<Loc EndOffset="1538" SrcFileId="1" StartOffset="1500"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="1498" SrcFileId="1" StartOffset="1496"/>
+</LocList>
+</OpTerm>
+<BasicBoolTerm Intrnl_Id="74">
+<LocList>
+<Loc EndOffset="1588" SrcFileId="1" StartOffset="1550"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="1548" SrcFileId="1" StartOffset="1546"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1295" SrcFileId="1" StartOffset="1293"/>
+<LocList>
+<Loc EndOffset="1704" SrcFileId="1" StartOffset="1293"/>
+</LocList>
+<RootTerm CovItemId="C4" CovItemPrefix="Triangle.java" Intrnl_Id="75">
+<OpTerm BooleanOpId="2" Intrnl_Id="76">
+<BasicBoolTerm Intrnl_Id="77">
+<LocList>
+<Loc EndOffset="1335" SrcFileId="1" StartOffset="1297"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="78">
+<LocList>
+<Loc EndOffset="1383" SrcFileId="1" StartOffset="1345"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="1344" SrcFileId="1" StartOffset="1342"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B6" CovItemPrefix="Triangle.java" Implct="true" Intrnl_Id="79">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="80">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1245" SrcFileId="1" StartOffset="1243"/>
+<LocList>
+<Loc EndOffset="1709" SrcFileId="1" StartOffset="1243"/>
+</LocList>
+<RootTerm CovItemId="C3" CovItemPrefix="Triangle.java" Intrnl_Id="81">
+<BasicBoolTerm Intrnl_Id="82">
+<LocList>
+<Loc EndOffset="1267" SrcFileId="1" StartOffset="1247"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S19" CovItemPrefix="Triangle.java" Intrnl_Id="83">
+<LocList>
+<Loc EndOffset="1730" SrcFileId="1" StartOffset="1715"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="7414" HierarchyLvlTypeId="4" Intrnl_Id="84" Name="diffOfBorders">
+<Header>
+<Loc EndOffset="1816" SrcFileId="1" StartOffset="1775"/>
+</Header>
+<LocList>
+<Loc EndOffset="1861" SrcFileId="1" StartOffset="1775"/>
+</LocList>
+<StmntSeq Intrnl_Id="85">
+<LocList>
+<Loc EndOffset="1857" SrcFileId="1" StartOffset="1822"/>
+</LocList>
+<BasicStmnt CovItemId="S20" CovItemPrefix="Triangle.java" Intrnl_Id="86">
+<LocList>
+<Loc EndOffset="1857" SrcFileId="1" StartOffset="1822"/>
+</LocList>
+<QMO CovItemId="Q0" CovItemPrefix="Triangle.java" Intrnl_Id="87">
+<LocList>
+<Loc EndOffset="1836" SrcFileId="1" StartOffset="1829"/>
+</LocList>
+<QMO_E CovItemId="Q0-0" CovItemPrefix="Triangle.java" Intrnl_Id="88">
+<LocList>
+<Loc EndOffset="1846" SrcFileId="1" StartOffset="1839"/>
+</LocList>
+</QMO_E>
+<QMO_E CovItemId="Q0-1" CovItemPrefix="Triangle.java" Intrnl_Id="89">
+<LocList>
+<Loc EndOffset="1856" SrcFileId="1" StartOffset="1849"/>
+</LocList>
+</QMO_E>
+</QMO>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="7415" HierarchyLvlTypeId="4" Intrnl_Id="90" Name="getBorders">
+<Header>
+<Loc EndOffset="1920" SrcFileId="1" StartOffset="1894"/>
+</Header>
+<LocList>
+<Loc EndOffset="2071" SrcFileId="1" StartOffset="1894"/>
+</LocList>
+<StmntSeq Intrnl_Id="91">
+<LocList>
+<Loc EndOffset="1955" SrcFileId="1" StartOffset="1926"/>
+<Loc EndOffset="1986" SrcFileId="1" StartOffset="1959"/>
+<Loc EndOffset="2017" SrcFileId="1" StartOffset="1990"/>
+<Loc EndOffset="2048" SrcFileId="1" StartOffset="2021"/>
+<Loc EndOffset="2067" SrcFileId="1" StartOffset="2052"/>
+</LocList>
+<BasicStmnt CovItemId="S21" CovItemPrefix="Triangle.java" Intrnl_Id="92">
+<LocList>
+<Loc EndOffset="1955" SrcFileId="1" StartOffset="1926"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S22" CovItemPrefix="Triangle.java" Intrnl_Id="93">
+<LocList>
+<Loc EndOffset="1986" SrcFileId="1" StartOffset="1959"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S23" CovItemPrefix="Triangle.java" Intrnl_Id="94">
+<LocList>
+<Loc EndOffset="2017" SrcFileId="1" StartOffset="1990"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S24" CovItemPrefix="Triangle.java" Intrnl_Id="95">
+<LocList>
+<Loc EndOffset="2048" SrcFileId="1" StartOffset="2021"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S25" CovItemPrefix="Triangle.java" Intrnl_Id="96">
+<LocList>
+<Loc EndOffset="2067" SrcFileId="1" StartOffset="2052"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</MASTRoot>
+<TestSession Comment="" Date="1368502183907" Name="2013-5-14 11:29:43">
+<TestCase Comment="" Date="1368502183873" Name="TriangleTest:testGetType3">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="B9" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S17" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183878" Name="TriangleTest:testGetType1">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B7" Value="1"/>
+<Cov CovItemId="Q0-1" Value="3"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S15" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="11" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183879" Name="TriangleTest:testGetType2">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="10" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="022" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183879" Name="TriangleTest:testGetType4">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="B6" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183880" Name="TriangleTest:testGetType5">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B6" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="022222" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183881" Name="TriangleTest:testGetType6">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183882" Name="TriangleTest:testGetType7">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="110" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183883" Name="TriangleTest:testIsTriangle1">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183884" Name="TriangleTest:testIsTriangle2">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183885" Name="TriangleTest:testIsTriangle3">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="110222" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183885" Name="TriangleTest:testIsTriangle4">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183886" Name="TriangleTest:testIsTriangle5">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="022" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183887" Name="TriangleTest:testDiffOfBorders">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList/>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183888" Name="TriangleTest:testGetBorders">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S21" Value="3"/>
+<Cov CovItemId="S22" Value="3"/>
+<Cov CovItemId="S23" Value="3"/>
+<Cov CovItemId="S24" Value="3"/>
+<Cov CovItemId="S25" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList/>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<MetaDataList/>
+</TestSession>
+<TestSession Comment="" Date="1368793867683" Name="2013-5-17 20:31:07">
+<TestCase Comment="" Date="1368502183873" Name="TriangleTest:testGetType3">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="B9" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S17" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183878" Name="TriangleTest:testGetType1">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B7" Value="1"/>
+<Cov CovItemId="Q0-1" Value="3"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S15" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="11" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183879" Name="TriangleTest:testGetType2">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="10" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="022" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183879" Name="TriangleTest:testGetType4">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="B6" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183880" Name="TriangleTest:testGetType5">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B6" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="022222" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183881" Name="TriangleTest:testGetType6">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183882" Name="TriangleTest:testGetType7">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="110" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183883" Name="TriangleTest:testIsTriangle1">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183884" Name="TriangleTest:testIsTriangle2">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183885" Name="TriangleTest:testIsTriangle3">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="110222" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183885" Name="TriangleTest:testIsTriangle4">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183886" Name="TriangleTest:testIsTriangle5">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="022" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183887" Name="TriangleTest:testDiffOfBorders">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList/>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183888" Name="TriangleTest:testGetBorders">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S21" Value="3"/>
+<Cov CovItemId="S22" Value="3"/>
+<Cov CovItemId="S23" Value="3"/>
+<Cov CovItemId="S24" Value="3"/>
+<Cov CovItemId="S25" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList/>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<MetaDataList/>
+</TestSession>
+<TestSession Comment="" Date="1369118841243" Name="2013-5-21 14:47:20">
+<TestCase Comment="" Date="1368502183873" Name="TriangleTest:testGetType3">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="B9" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S17" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183878" Name="TriangleTest:testGetType1">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B7" Value="1"/>
+<Cov CovItemId="Q0-1" Value="3"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S15" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="11" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183879" Name="TriangleTest:testGetType2">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="10" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="022" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183879" Name="TriangleTest:testGetType4">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="B6" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183880" Name="TriangleTest:testGetType5">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B6" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="022222" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183881" Name="TriangleTest:testGetType6">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183882" Name="TriangleTest:testGetType7">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="110" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183883" Name="TriangleTest:testIsTriangle1">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183884" Name="TriangleTest:testIsTriangle2">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183885" Name="TriangleTest:testIsTriangle3">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="110222" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183885" Name="TriangleTest:testIsTriangle4">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183886" Name="TriangleTest:testIsTriangle5">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="022" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183887" Name="TriangleTest:testDiffOfBorders">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList/>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183888" Name="TriangleTest:testGetBorders">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S21" Value="3"/>
+<Cov CovItemId="S22" Value="3"/>
+<Cov CovItemId="S23" Value="3"/>
+<Cov CovItemId="S24" Value="3"/>
+<Cov CovItemId="S25" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList/>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<MetaDataList/>
+</TestSession>
+<TestSession Comment="" Date="1369119019598" Name="2013-5-21 14:50:19">
+<TestCase Comment="" Date="1368502183873" Name="TriangleTest:testGetType3">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="B9" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S17" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183878" Name="TriangleTest:testGetType1">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B7" Value="1"/>
+<Cov CovItemId="Q0-1" Value="3"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S15" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="11" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183879" Name="TriangleTest:testGetType2">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="10" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="022" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183879" Name="TriangleTest:testGetType4">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="B6" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183880" Name="TriangleTest:testGetType5">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="B6" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="022222" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="0" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183881" Name="TriangleTest:testGetType6">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183882" Name="TriangleTest:testGetType7">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B10" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="B5" Value="1"/>
+<Cov CovItemId="B8" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S12" Value="1"/>
+<Cov CovItemId="S13" Value="1"/>
+<Cov CovItemId="S14" Value="1"/>
+<Cov CovItemId="S16" Value="1"/>
+<Cov CovItemId="S18" Value="1"/>
+<Cov CovItemId="S19" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="1" RootTermCovItemId="C3">
+<MapEntry BoolAssgnmnt="1" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="2" RootTermCovItemId="C4">
+<MapEntry BoolAssgnmnt="02" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C5">
+<MapEntry BoolAssgnmnt="110" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183883" Name="TriangleTest:testIsTriangle1">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183884" Name="TriangleTest:testIsTriangle2">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B3" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="2"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S10" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="111" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183885" Name="TriangleTest:testIsTriangle3">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="110222" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183885" Name="TriangleTest:testIsTriangle4">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B2" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111102" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183886" Name="TriangleTest:testIsTriangle5">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="B1" Value="1"/>
+<Cov CovItemId="B4" Value="1"/>
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S11" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="1"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+<Cov CovItemId="S7" Value="1"/>
+<Cov CovItemId="S8" Value="1"/>
+<Cov CovItemId="S9" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList>
+<AssgnmntPrefix RootTermCovItemPrefix="Triangle.java">
+<AssgnmntListEntry Length="6" RootTermCovItemId="C1">
+<MapEntry BoolAssgnmnt="111111" Value="1"/>
+</AssgnmntListEntry>
+<AssgnmntListEntry Length="3" RootTermCovItemId="C2">
+<MapEntry BoolAssgnmnt="022" Value="1"/>
+</AssgnmntListEntry>
+</AssgnmntPrefix>
+</AssgnmntList>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183887" Name="TriangleTest:testDiffOfBorders">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="Q0-0" Value="1"/>
+<Cov CovItemId="Q0-1" Value="1"/>
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S20" Value="2"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList/>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<TestCase Comment="" Date="1368502183888" Name="TriangleTest:testGetBorders">
+<CovList>
+<CovPrefix CovItemPrefix="Triangle.java">
+<Cov CovItemId="S1" Value="1"/>
+<Cov CovItemId="S2" Value="1"/>
+<Cov CovItemId="S21" Value="3"/>
+<Cov CovItemId="S22" Value="3"/>
+<Cov CovItemId="S23" Value="3"/>
+<Cov CovItemId="S24" Value="3"/>
+<Cov CovItemId="S25" Value="3"/>
+<Cov CovItemId="S3" Value="1"/>
+<Cov CovItemId="S4" Value="1"/>
+<Cov CovItemId="S5" Value="1"/>
+<Cov CovItemId="S6" Value="1"/>
+</CovPrefix>
+</CovList>
+<AssgnmntList/>
+<ObjMetaDataList/>
+<MetaDataList/>
+</TestCase>
+<MetaDataList/>
+</TestSession>
+</TestSessionContainer>
