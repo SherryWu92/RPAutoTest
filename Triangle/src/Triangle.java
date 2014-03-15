@@ -16,7 +16,7 @@ public class Triangle {
 		this.lborderC = lborderC;
 
 	}
-
+//test//
 	/**
 	 * 判断是否是三角形
 	 * 
