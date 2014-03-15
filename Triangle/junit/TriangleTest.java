@@ -8,6 +8,7 @@ public class TriangleTest extends TestCase{
 
 
 	/**
+	 * test from Sherry
 	 * 测试类：Triangle
 	 * 测试方法：isTriangle
 	 * 1.条件覆盖、分支覆盖：
