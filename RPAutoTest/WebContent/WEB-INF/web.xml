@@ -7,7 +7,7 @@
 	<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
 	<init-param>
 		<param-name>com.sun.jersey.config.property.packages</param-name>
-		<param-value>cn.edu.nju.software.rp.rest</param-value>
+		<param-value>cn.edu.nju.software.rp.service</param-value>
 	</init-param>
 	<init-param>
 		<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
