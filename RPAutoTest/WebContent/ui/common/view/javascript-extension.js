@@ -19,7 +19,7 @@ function includeCSS(filename)
     var style = document.createElement('link');
     style.href = filename;
     style.rel = 'stylesheet';
-    script.type = 'text/css';
+    style.type = 'text/css';
 
-    head.appendChild(css);
+    head.appendChild(style);
 }

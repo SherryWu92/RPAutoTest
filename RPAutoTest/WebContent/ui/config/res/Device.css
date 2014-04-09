@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+.device span {
+	display:inline-block;
+	color:#225588;
+	width:40px;
+	font-weight:bold;
+}
+
+.device img {
+	width:60px;
+	height:60px
+}

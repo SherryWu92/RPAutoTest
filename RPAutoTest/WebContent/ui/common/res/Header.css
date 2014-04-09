@@ -1,0 +1,34 @@
+@CHARSET "UTF-8";
+.header {
+	width: 80%;			
+	margin: auto;
+	color: white;
+	font-size: 18px;			
+}
+.header > span {
+	background-color: #298cad;
+	border-radius: 6px;
+	padding: 20px 0 20px 0px;
+}
+
+.header .home {
+	display: inline-block;
+	width: 9%;
+	text-align: center;
+	border: 1px solid white;	
+	transition: all 0.3s ease-in-out;		
+}
+
+.header .home:hover {
+	cursor: pointer;
+	background-color:#ffffff;
+	color: #009ac9;
+	border-color: #009ac9;
+}
+
+.header .title {
+	display: inline-block;
+	width: 90%;
+	text-align: center;		
+	float: right;	
+}

@@ -1,0 +1,122 @@
+@CHARSET "UTF-8";
+body {
+	background: #E9E9E9;
+	font: 11px/1.33 Verdana, sans-serif;
+}
+body > div {
+	margin: 10px auto 0 auto;
+	border-radius: 10px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.content {
+	position: relative;
+	width: 80%;
+	height: 700px;
+	background-color: #bbbbbb;
+	color: white;			
+}
+
+.content ul {
+	list-style: none;			
+}
+
+.content li {
+	float: right;
+}
+
+#menu a {
+	display: block;
+	text-align: center;
+	padding: 3px 15px 7px;			
+	color: white;
+	background: #555555;
+	border-left: 1px solid #333;
+	white-space: nowrap;
+}
+
+#menu a:hover {
+	background: #999999;
+	color: #000000;
+}
+
+.content .mainView {
+	position: relative;
+	background: #333333;
+	height: 88%;
+	top: 6%;	
+	width: 97%;
+	margin: auto;		
+}
+
+.mainView #machines {
+	position: relative;
+	float: left;
+	left: 2%;
+	top: 5%;
+	width: 15%;
+	height: 90%;
+	/*border: 1px dashed #666666;*/
+	background: #cccccc;
+	border-radius: 6px;
+} 
+
+.mainView #machines	> div {
+	position: relative;
+	padding-top: 10px;
+	width:96px;
+	margin: auto;
+}
+
+.mainView #machines	img{
+	position: relative;
+	opacity: 0.9;
+}
+
+.mainView #machines	img:hover {
+	opacity: 1;
+}
+
+.mainView #canvas {
+	position: relative;
+	left: 18%;
+	top: 5%;
+	width: 80%;
+	height: 90%;
+	background: #cccccc;
+	border-radius: 6px;
+} 
+		
+.content .tabs {
+	position: relative;
+	top: 5%;	
+	width: 95%;
+	margin: auto;	
+}
+
+.content .tabs a{
+	display: inline-block;
+	color: #333333;		
+	text-align: center;
+	padding: 3px 15px 3px;	
+	font-size: 14px;
+	line-height: 27px;	
+	width: 100px;	
+}
+
+.content .tabs a.sel{
+	background: #333333;	
+	color: white;		
+}
+
+.content .tabs a.sel:hover {
+	color: white;
+}
+
+.content .tabs a:hover {
+	color: black;
+	border: 1px dotted #333333;
+}

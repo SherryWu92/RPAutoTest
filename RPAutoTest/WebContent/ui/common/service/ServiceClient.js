@@ -2,7 +2,7 @@
  * 
  */
 
-ui.common.service.ServiceClient = function()
+function ServiceClient()
 {
  
     this.invoke = function(p_path, p_params, p_options)
@@ -54,4 +54,4 @@ ui.common.service.ServiceClient = function()
 
 };
 
-ui.common.service.ServiceClient = new ui.common.service.ServiceClient();
+//ui.common.service.ServiceClient = new ui.common.service.ServiceClient();
