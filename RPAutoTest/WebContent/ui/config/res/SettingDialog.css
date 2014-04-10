@@ -1,0 +1,101 @@
+@CHARSET "UTF-8";
+body {
+	background: #E9E9E9;
+	font: 11px/1.33 Verdana, sans-serif;
+}
+body > div {
+	margin: 10px auto 0 auto;
+	border-radius: 10px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.setting {
+	position: absolute;
+	left: 500px;
+	top: 150px;
+	width: 500px;			
+	height: 320px;
+	color: white;
+	font-size: 18px;	
+	background: #bbbbbb;	
+	z-index: 2;	
+}
+.setting > span {
+	background-color: #298cad;
+	border-radius: 6px;
+	padding: 10px 0 10px 0px;
+}
+
+.setting .title {
+	display: inline-block;
+	width: 100%;
+	text-align: center;			
+}
+
+.setting .select {
+	position: relative;
+	text-align: right;
+	margin: 1% 2% 0 0;
+}
+
+.setting .rip {
+	position: relative;
+	top: 1%;
+	width: 80%;			
+	margin: auto;
+	font-size: 10px;
+	color: #333;
+	border-color: white;
+}
+
+.setting .ospf {
+	position: relative;
+	top: 1%;
+	width: 96%;			
+	margin: auto;
+	font-size: 10px;
+	color: #333;
+	border-color: white;
+}
+
+.setting td {
+	text-align: center;
+}
+
+.setting input {
+	width: 80px;
+}
+
+.setting .area {
+	width: 50px;
+}
+
+.operation {
+	position: absolute;
+	left: 10%;
+	bottom: 6%;
+	width: 80%;
+	text-align: center;
+}
+
+.operation a {
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 3px 15px 3px;
+	font-size: 14px;
+	line-height: 27px;
+	width: 80px;
+	background: #298cad;
+	border-radius: 5px;
+	margin-left: 10px;
+}
+
+.operation a:hover {
+	color: #298cad;
+	background: white;
+	border: 1px solid #298cad;
+}
