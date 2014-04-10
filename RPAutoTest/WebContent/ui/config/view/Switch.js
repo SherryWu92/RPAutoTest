@@ -5,5 +5,12 @@ function Switch(p_id, p_left, p_top) {
 			p_left + "px;top:" + p_top + "px'><span>" + p_id + "<span></div>");
 	var $device = $("<img src='ui/config/res/images/switch.png'/>");	
 	$switch.append($device);
+	
+	
+	$switch.dblclick(function() {
+		var body = $('body');
+		var $settingDialog = new SettingDialog();
+		body.append($settingDialog);
+	});
 	return $switch;
 }

@@ -10,7 +10,7 @@
         endpoint:["Dot", { radius:3 }],
         paintStyle:{ fillStyle:color1 },
         isSource:true,
-        scope:"green dot",
+        scope:"blue dot",
         connectorStyle:{ strokeStyle:color1, lineWidth:2 },
         connector: ["Straight", { curviness:63 } ],
         maxConnections:1,
@@ -24,6 +24,6 @@
         for (var i = 0; i < anchors.length; i++) {
             jsPlumb.addEndpoint(toId, { anchor:anchors[i]}, exampleEndpoint1);                       
         }
-        jsPlumb.draggable(jsPlumb.getSelector(".device"), {containment: "#canvas"});   
+        jsPlumb.draggable(jsPlumb.getSelector(".device"), {containment: "#canvas"});         
     }
  

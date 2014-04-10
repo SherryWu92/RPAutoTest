@@ -96,10 +96,6 @@ function Content() {
 					$device = new Computer(id, left, top);
 				}
 
-//				var $deviceDiv = $("<div id=" + id + " class='device' style='position:absolute;left:" +
-//						left + "px;top:" + top + "px'><span style='color:#225588;display:inline-block;width:40px;font-weight:bold;'>" + id + "<span></div>");
-//				var $device = $("<img src='" + src + "' style='width:60px;height:60px'/>");	
-//				$deviceDiv.append($device);
 				$(this).append($device);
 				addEndPoints(id);
 		    }
