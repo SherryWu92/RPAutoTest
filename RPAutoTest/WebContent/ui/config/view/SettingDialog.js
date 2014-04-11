@@ -141,42 +141,36 @@ function SettingDialog(p_connInfo) {
 		$settingDialog.append($operations);
 		
 		$ok.click(function(){
-			console.debug("ok");
 			var protocal = $("#protocalType").val(); 
 			if(protocal.toLowerCase() == "ospf") {
 				connInfo.protocal = protocal;
-				connInfo.connections = [];
+				var i = 0;
 				$(".ospf tr:gt(0)").each(function() {	
-					var conn = {};
-					conn.source = $(this).find("td:eq(0)").text();
+					var conn = connInfo.connections[i];
 					conn.port = $(this).find("td:eq(1) input").val();
 					conn.ipAddress = $(this).find("td:eq(2) input").val();
 					conn.network = $(this).find("td:eq(3) input").val();
 					conn.area = $(this).find("td:eq(4) input").val();
-					conn.target = $(this).find("td:eq(5)").text();
-					connInfo.connections.push(conn);
+					i++;
 				}); 
 			}
 			else if(protocal.toLowerCase() == "rip") {
 				connInfo.protocal = protocal;
-				connInfo.connections = [];
+				var i = 0;
 				$(".rip tr:gt(0)").each(function() {	
-					var conn = {};
-					conn.source = $(this).find("td:eq(0)").text();
+					var conn = connInfo.connections[i];
 					conn.ipAddress = $(this).find("td:eq(1) input").val();
 					conn.network = $(this).find("td:eq(2) input").val();
-					connInfo.connections.push(conn);
+					i++;
 				}); 
 			}
-			console.debug(connInfo);
 			localStorage.setItem(connInfo.id, JSON.stringify(connInfo));
-			console.debug(JSON.parse(localStorage.getItem(connInfo.id)));
+			
 			$settingDialog.remove();
 			$maskingDiv.remove();
 		});
 		
 		$cancel.click(function(){
-			console.debug("cancel");
 			$settingDialog.remove();
 			$maskingDiv.remove();
 		});

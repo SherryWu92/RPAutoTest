@@ -9,6 +9,7 @@ function Router(p_id, p_left, p_top) {
 	function init() {		
 		createRouter();
 		initConnInfo();
+		localStorage.removeItem(p_id); //clear the localStorage
 	}
 	
 	function createRouter() {
@@ -29,7 +30,6 @@ function Router(p_id, p_left, p_top) {
 		
 	function initConnInfo(p_id) {
 		connInfo = localStorage.getItem(p_id);
-		console.debug(connInfo);
 		if(connInfo == null) {
 			connInfo = {};
 			connInfo.id = p_id;
@@ -43,7 +43,9 @@ function Router(p_id, p_left, p_top) {
 	
 	function getAllConnections(p_id) {
 		var id = p_id;
-		var connections = jsPlumb.getConnections({scope:"blue dot", source: id});
+		var storeConnections = $.extend(true, [], connInfo.connections);
+		connInfo.connections = [];
+		var connections = jsPlumb.getConnections({scope:"blue dot", source: id});		
 		for(var i in connections) {			
 			var newConn = {};
 			newConn.source = id;
@@ -52,7 +54,8 @@ function Router(p_id, p_left, p_top) {
 			newConn.network = "";
 			newConn.area = "";
 			newConn.target = connections[i].targetId;	
-			connInfo.connections.push(newConn);
+			var conn = getCompleteConnection(storeConnections, newConn);
+			connInfo.connections.push(conn);
 		}
 				
 		connections = jsPlumb.getConnections({scope:"blue dot", target: id});
@@ -64,8 +67,19 @@ function Router(p_id, p_left, p_top) {
 			newConn.network = "";
 			newConn.area = "";
 			newConn.target = connections[i].sourceId;
-			connInfo.connections.push(newConn);
+			var conn = getCompleteConnection(storeConnections, newConn);
+			connInfo.connections.push(conn);
 		}
+	}
+	
+	function getCompleteConnection(p_connections, p_newConn) {
+		for(var i in p_connections) {
+			var conn = p_connections[i];
+			if(conn.source == p_newConn.source && conn.target == p_newConn.target) {
+				return conn;
+			}
+		}
+		return p_newConn;
 	}
 	
 	return $router;
