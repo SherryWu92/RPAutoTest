@@ -1,4 +1,6 @@
 includeCSS("ui/config/res/Content.css");
+
+includeJS("ui/common/service/ServiceClient.js");
 includeJS("ui/config/view/Router.js");
 includeJS("ui/config/view/Switch.js");
 includeJS("ui/config/view/Computer.js");
@@ -39,7 +41,7 @@ function Content() {
 		
 		$okLi.click(function() {
 			var protocalInfo = {};
-			protocalInfo.protocal = "rip";
+			protocalInfo.type = "rip";
 			protocalInfo.routers = [];
 			protocalInfo.switches = [];
 			if(localStorage.getItem("Protocal") != null) {
@@ -64,7 +66,12 @@ function Content() {
 					protocalInfo.switches.push(_switch);
 				}
 			});
+			
 			console.debug(protocalInfo);
+			ServiceClient.invoke("configure/protocal", protocalInfo).done(function(p_results){
+				console.debug(p_results);
+			});
+			
 		});
 	}
 

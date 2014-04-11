@@ -161,7 +161,7 @@ function SettingDialog(p_connInfo) {
 			var protocal = $("#protocalType").val(); 
 			localStorage.setItem("Protocal", protocal);
 			if(protocal.toLowerCase() == "ospf") {
-				connInfo.protocal = protocal;
+//				connInfo.protocal = protocal;
 				var i = 0;
 				$(".ospf tr:gt(0)").each(function() {	
 					var conn = connInfo.connections[i];
@@ -174,7 +174,7 @@ function SettingDialog(p_connInfo) {
 				}); 
 			}
 			else if(protocal.toLowerCase() == "rip") {
-				connInfo.protocal = protocal;
+//				connInfo.protocal = protocal;
 				var i = 0;
 				$(".rip tr:gt(0)").each(function() {	
 					var conn = connInfo.connections[i];

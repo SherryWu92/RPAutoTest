@@ -9,11 +9,12 @@ function ServiceClient()
     {
     	var options = $.extend({
 			method: "post",
-			dataType: "json"
+			dataType: "json",
+			contentType: "application/json"
     	}, p_options);
-    	
+    		
     	options.url = getServiceUrl(p_path);
-    	options.data = convertParams(p_params);
+    	options.data = convertParams(p_params);    	
     	
     	var def = $.Deferred();
     	$.ajax(options).done(function(response)
@@ -54,4 +55,4 @@ function ServiceClient()
 
 };
 
-//ui.common.service.ServiceClient = new ui.common.service.ServiceClient();
+var ServiceClient = new ServiceClient();
