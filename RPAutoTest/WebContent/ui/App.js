@@ -7,6 +7,7 @@ includeJS("ui/config/view/Content.js");
 window.onload = function () {
 	jsPlumb.ready(function() {
 		includeJS("ui/config/view/Connector.js");
+		localStorage.clear();
 		init();
 	});
 };
@@ -16,6 +17,6 @@ function init() {
 	var content = new Content();
 	var body = $("body");
 	body.append(header);
-	body.append(content);
+	body.append(content);	
 }
 

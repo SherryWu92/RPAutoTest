@@ -36,6 +36,36 @@ function Content() {
 		$menuUl.append($undoLi);
 
 		$contentDiv.append($menuUl);
+		
+		$okLi.click(function() {
+			var protocalInfo = {};
+			protocalInfo.protocal = "rip";
+			protocalInfo.routers = [];
+			protocalInfo.switches = [];
+			if(localStorage.getItem("Protocal") != null) {
+				protocalInfo.protocal = localStorage.getItem("Protocal");
+			}
+			$canvas.find(".device").each(function(){
+				var id = $(this).attr("id");
+				if(id.indexOf("R") != -1) {
+					var router = localStorage.getItem(id);
+					if(router == null) {
+						alert("Please complete the " + id + " router's info!");
+						return;
+					}
+					protocalInfo.routers.push(router);
+				}
+				else if(id.indexOf("SW") != -1) {
+					var _switch = localStorage.getItem(id);
+					if(_switch == null) {
+						alert("Please complete the " + id + " switch's info!");
+						return;
+					}
+					protocalInfo.switches.push(_switch);
+				}
+			});
+			console.debug(protocalInfo);
+		});
 	}
 
 	function createMainView() {

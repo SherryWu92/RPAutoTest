@@ -33,7 +33,6 @@ function Router(p_id, p_left, p_top) {
 		if(connInfo == null) {
 			connInfo = {};
 			connInfo.id = p_id;
-			connInfo.protocal = "RIP";
 			connInfo.connections = [];
 		}
 		else {
@@ -48,9 +47,9 @@ function Router(p_id, p_left, p_top) {
 		var connections = jsPlumb.getConnections({scope:"blue dot", source: id});		
 		for(var i in connections) {			
 			var newConn = {};
-			newConn.source = id;
 			newConn.port = "";
 			newConn.ipAddress = "";
+			newConn.submask = "";
 			newConn.network = "";
 			newConn.area = "";
 			newConn.target = connections[i].targetId;	
@@ -61,9 +60,9 @@ function Router(p_id, p_left, p_top) {
 		connections = jsPlumb.getConnections({scope:"blue dot", target: id});
 		for(var i in connections) {
 			var newConn = {};
-			newConn.source = id;
 			newConn.port = "";
 			newConn.ipAddress = "";
+			newConn.submask = "";
 			newConn.network = "";
 			newConn.area = "";
 			newConn.target = connections[i].sourceId;
@@ -75,7 +74,7 @@ function Router(p_id, p_left, p_top) {
 	function getCompleteConnection(p_connections, p_newConn) {
 		for(var i in p_connections) {
 			var conn = p_connections[i];
-			if(conn.source == p_newConn.source && conn.target == p_newConn.target) {
+			if(conn.target == p_newConn.target) {
 				return conn;
 			}
 		}
