@@ -73,8 +73,17 @@ function Content() {
 			});
 			
 		});
+		
+		$clearLi.click(function() {
+			clearCanvas();
+		});
 	}
 
+	function clearCanvas() {
+		$canvas.empty();
+		localStorage.clear();
+	}
+	
 	function createMainView() {
 		$mainView = $("<div class='mainView'></div>");
 		$contentDiv.append($mainView);

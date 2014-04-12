@@ -197,9 +197,13 @@ function SettingDialog(p_connInfo) {
 		});
 		
 		$delete.click(function(){
-			console.debug("delete");
+			var id = connInfo.id;
+			localStorage.removeItem(id);
+			jsPlumb.detachAllConnections(id);
+			jsPlumb.removeAllEndpoints(id);
+			$("#" + id).remove();
 			$settingDialog.remove();
-			$maskingDiv.remove();
+			$maskingDiv.remove();			
 		});
 	}
 	
