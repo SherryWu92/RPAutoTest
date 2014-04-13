@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -97,8 +98,12 @@ public class TestCases {
 	    jaxbMarshaller.marshal(a, System.out);
 	    jaxbMarshaller.marshal(a, new File("c:\\test\\testcases.xml"));
 	    
+	    Unmarshaller unMarshaller = jaxbContext.createUnmarshaller();
+	    TestCases t = (TestCases)unMarshaller.unmarshal(new File("c:\\test\\testcases.xml"));
+	    System.out.print(t.testcase.get(0).getEquipments().getEquipment().get(0).getCommands().get(1));
+	   
 	    PythonInterpreter interp = new PythonInterpreter();
-	    interp.execfile("C:\\Users\\njusoftware\\git\\RPAutoTest\\AutoLib\\config.py");
+	    interp.execfile("C:\\Users\\njusoftware\\Desktop\\git-project\\RPAutoTest\\AutoLib\\config.py");
 	    
 	    String className = "Config";
 	    String instanceName = className.toLowerCase();
