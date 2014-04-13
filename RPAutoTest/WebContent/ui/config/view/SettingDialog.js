@@ -29,6 +29,7 @@ function SettingDialog(p_connInfo) {
 	var $settingDialog = $("<div class='setting'></div>");
 	var $ripTable = null;
 	var $ospfTable = null;
+	var $controlInt = null; 
 	var $maskingDiv = null;
 	init();
 	
@@ -48,6 +49,7 @@ function SettingDialog(p_connInfo) {
 			$settingDialog.append($ripTable);
 		}
 
+		createControlInt();
 		createOperations();
 	}
 	
@@ -78,13 +80,17 @@ function SettingDialog(p_connInfo) {
 		
 		$select.change(function() {
 			var protocal = $(this).val(); 
-			if(protocal.toLowerCase() == "ospf") {
+			if(protocal.toLowerCase() == "ospf") {				
 				$ripTable.detach();
-				$settingDialog.append($ospfTable);				
+				$controlInt.detach();
+				$settingDialog.append($ospfTable);
+				$settingDialog.append($controlInt);
 			}
 			else if(protocal.toLowerCase() == "rip") {
 				$ospfTable.detach();
+				$controlInt.detach();
 				$settingDialog.append($ripTable);
+				$settingDialog.append($controlInt);
 			}
 		});
 	}
@@ -145,6 +151,22 @@ function SettingDialog(p_connInfo) {
 		$ospfTable = $table;
 	}
 	
+	function createControlInt() {
+		$controlInt = $('<div class="controlInt"></div>');
+		
+		var $physicalIpLabel = $('<label>Physical-Ip</label>');
+		var $physicalIpInput = $('<input type="text" id="physicalIp" class="physicalIp" placeholder="192.168.1.1"/>');
+		var $passwordLabel = $('<label>Password</label>');
+		var $passwordInput = $('<input type="password" id="password" class="password" />');
+		
+		$controlInt.append($physicalIpLabel);
+		$controlInt.append($physicalIpInput);
+		$controlInt.append($passwordLabel);
+		$controlInt.append($passwordInput);
+		
+		$settingDialog.append($controlInt);
+	}
+	
 	function createOperations() {
 		var $operations = $('<div class="operation"></div>');
 		
@@ -185,6 +207,8 @@ function SettingDialog(p_connInfo) {
 					i++;
 				}); 
 			}
+			connInfo.physicalIp = $("#physicalIp").val();
+			connInfo.password = $("#password").val();
 			localStorage.setItem(connInfo.id, JSON.stringify(connInfo));
 			
 			$settingDialog.remove();

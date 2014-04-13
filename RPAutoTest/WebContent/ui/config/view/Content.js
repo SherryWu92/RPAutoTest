@@ -30,11 +30,11 @@ function Content() {
 		var $undoLi = $("<li><a href='#' id='menu-undo' class=''>Undo</a></li>");
 		var $redoLi = $("<li><a href='#' id='menu-redo' class=''>Redo</a></li>");
 		var $importLi = $("<li><a href='#' id='menu-import' class=''>Import</a></li>");
-		var $okLi = $("<li><a href='#' id='menu-ok' class=''>OK</a></li>");
+		var $configureLi = $("<li><a href='#' id='menu-configure' class=''>Configure</a></li>");
 		var $clearLi = $("<li><a href='#' id='menu-clear' class=''>Clear</a></li>");
 		
 		$menuUl.append($clearLi);
-		$menuUl.append($okLi);
+		$menuUl.append($configureLi);
 		$menuUl.append($importLi);
 		$menuUl.append($redoLi);
 		$menuUl.append($undoLi);
@@ -51,7 +51,7 @@ function Content() {
 			handleFileSelect();
 		});
 		
-		$okLi.click(function() {
+		$configureLi.click(function() {
 			var protocalInfo = {};
 			protocalInfo.type = "rip";
 			protocalInfo.routers = [];
