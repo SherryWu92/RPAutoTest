@@ -7,8 +7,9 @@ includeJS("ui/config/view/Computer.js");
 
 function Content() {
 	var $contentDiv = $("<div class='content'></div>");
-	var $mainView = null;
+	var $imgView = null;
 	var $canvas = null;
+	var $xmlArea = null;
 	var routerCount = 0;
 	var switchCount = 0;
 	var computerCount = 0;
@@ -19,6 +20,7 @@ function Content() {
 		createMainView();
 		createMachinesView();
 		createCanvas();
+		createXmlArea();
 		createTabs();
 	}
 	
@@ -28,24 +30,34 @@ function Content() {
 		var $undoLi = $("<li><a href='#' id='menu-undo' class=''>Undo</a></li>");
 		var $redoLi = $("<li><a href='#' id='menu-redo' class=''>Redo</a></li>");
 		var $importLi = $("<li><a href='#' id='menu-import' class=''>Import</a></li>");
-		var $okLi = $("<li><a href='#' id='menu-ok' class=''>OK</a></li>");
+		var $configureLi = $("<li><a href='#' id='menu-configure' class=''>Configure</a></li>");
 		var $clearLi = $("<li><a href='#' id='menu-clear' class=''>Clear</a></li>");
 		
 		$menuUl.append($clearLi);
-		$menuUl.append($okLi);
+		$menuUl.append($configureLi);
 		$menuUl.append($importLi);
 		$menuUl.append($redoLi);
 		$menuUl.append($undoLi);
 
-		$contentDiv.append($menuUl);
+		$contentDiv.append($menuUl);				
 		
-		$okLi.click(function() {
+		var $fileInput = $('<input type="file" style="display:none" id="file" name="file" accept="text/xml"/>');
+		$menuUl.append($fileInput);
+		$importLi.click(function() {
+			$fileInput.trigger('click');			
+		});
+		
+		$fileInput.change(function(evt) {
+			handleFileSelect();
+		});
+		
+		$configureLi.click(function() {
 			var protocalInfo = {};
 			protocalInfo.type = "rip";
 			protocalInfo.routers = [];
 			protocalInfo.switches = [];
 			if(localStorage.getItem("Protocal") != null) {
-				protocalInfo.protocal = localStorage.getItem("Protocal");
+				protocalInfo.type = localStorage.getItem("Protocal");
 			}
 			$canvas.find(".device").each(function(){
 				var id = $(this).attr("id");
@@ -73,11 +85,51 @@ function Content() {
 			});
 			
 		});
+		
+		$clearLi.click(function() {
+			clearCanvas();
+		});
+		
 	}
+	
+	function handleFileSelect() {  
+	    var files = $("#file")[0].files;
+	    if (!files.length) {
+	      alert('Please select a file!');
+	      return;
+	    }
 
+	    var file = files[0];
+	    var start = 0;
+	    var stop = file.size - 1;
+
+	    var reader = new FileReader();
+	    reader.onloadend = function(evt) {
+	      if (evt.target.readyState == FileReader.DONE) { 
+	    	  showXmlView();
+	    	  $("#xmlArea").text(evt.target.result);
+	      }
+	    };
+
+	    var blob = null;
+	    if (file.webkitSlice) {
+	      blob = file.slice(start, stop + 1);
+	    } else if (file.mozSlice) {
+	      blob = file.mozSlice(start, stop + 1);
+	    }
+	    reader.readAsBinaryString(blob);
+	}
+	
+	function clearCanvas() {
+		$canvas.empty();
+		localStorage.clear();
+	}
+	
 	function createMainView() {
-		$mainView = $("<div class='mainView'></div>");
-		$contentDiv.append($mainView);
+		$imgView = $("<div class='mainView'></div>");
+		$contentDiv.append($imgView);
+		
+		$xmlView = $("<div class='mainView'></div>");		
 	}
 	
 	function createMachinesView() {
@@ -102,12 +154,12 @@ function Content() {
 		$machinesDiv.append($switchDiv);
 		$machinesDiv.append($computerDiv);
 		
-		$mainView.append($machinesDiv);
+		$imgView.append($machinesDiv);
 	}
 	
 	function createCanvas() {
 		$canvas = $("<div id='canvas'></div>");
-		$mainView.append($canvas);
+		$imgView.append($canvas);
 		
 		$canvas.droppable({
 			activeClass: "ui-state-hover",
@@ -140,6 +192,11 @@ function Content() {
 
 	}
 	
+	function createXmlArea() {
+		$xmlArea = $("<textArea id='xmlArea'></textArea>");
+		$xmlView.append($xmlArea);
+	}
+	
 	function createTabs() {
 		var $tabsDiv = $("<div class='tabs' id='tabs-module'></div>");
 		
@@ -150,7 +207,30 @@ function Content() {
 		$tabsDiv.append($xmlTab);
 		
 		$contentDiv.append($tabsDiv);
+		
+		$imgTab.click(function() {
+			showImgView();
+		});
+		
+		$xmlTab.click(function() {
+			showXmlView();
+		});
 	}
+	
+	function showImgView() {
+		$("#tab-Img").addClass("sel");
+		$("#tab-xml").removeClass("sel");
+		$xmlView.detach();
+		$contentDiv.append($imgView);
+	}
+	
+	function showXmlView() {
+		$("#tab-xml").addClass("sel");
+		$("#tab-Img").removeClass("sel");
+		$imgView.detach();
+		$contentDiv.append($xmlView);
+	}
+	
 	$contentDiv.height(window.outerHeight - 170);
 	return $contentDiv;
 };

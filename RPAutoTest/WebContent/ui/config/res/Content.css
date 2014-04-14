@@ -44,12 +44,12 @@ a {
 }
 
 .content .mainView {
-	position: relative;
+	position: absolute;
 	background: #333333;
 	height: 88%;
+	left: 2%;
 	top: 6%;	
-	width: 97%;
-	margin: auto;		
+	width: 96%;
 }
 
 .mainView #machines {
@@ -88,13 +88,24 @@ a {
 	height: 90%;
 	background: #cccccc;
 	border-radius: 6px;
-} 
+}
+	
+.mainView #xmlArea {
+	display: block;
+	position: relative;
+	top: 5%;
+	width: 96%;
+	height: 90%;
+	margin:auto;
+	background: #cccccc;
+	border-radius: 6px;	
+}	
 		
 .content .tabs {
-	position: relative;
-	top: 5%;	
+	position: absolute;
+	left: 3%;
+	top: 94%;	
 	width: 95%;
-	margin: auto;	
 }
 
 .content .tabs a{

@@ -7,6 +7,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -38,6 +39,8 @@ public class ConfigureService {
                 JSONObject routerObject = routerArray.getJSONObject(i);   
                 Router router = new Router();
                 router.setId(routerObject.getString("id"));
+                router.setPhysicalIp(routerObject.getString("physicalIp"));
+                router.setPassword(routerObject.getString("password"));
                 
                 ArrayList<Connection> conns = new ArrayList<Connection>();
                 JSONArray connArray = routerObject.getJSONArray("connections");
@@ -59,6 +62,9 @@ public class ConfigureService {
 			for(int i = 0; i < switchArray.size(); i++) {
                 JSONObject switchObject = switchArray.getJSONObject(i);   
                 Switch _switch = new Switch();
+                _switch.setPhysicalIp(switchObject.getString("physicalIp"));
+                _switch.setPassword(switchObject.getString("password"));
+                
                 _switch.setId(switchObject.getString("id"));
                 
                 ArrayList<Connection> conns = new ArrayList<Connection>();
@@ -88,4 +94,5 @@ public class ConfigureService {
 
 		return response;
 	}
+	
 }
