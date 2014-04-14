@@ -20,9 +20,16 @@ import cn.edu.nju.software.rp.model.Connection;
 import cn.edu.nju.software.rp.model.Protocal;
 import cn.edu.nju.software.rp.model.Router;
 import cn.edu.nju.software.rp.model.Switch;
+import cn.edu.nju.software.rp.testcontrol.ConfigController;
 
 @Path("/configure")
 public class ConfigureService {
+	
+	private ConfigController configureController;
+	
+	public ConfigureService() {
+		configureController = new ConfigController();
+	}
 	
 	@POST
 	@Path("/protocal")
@@ -82,6 +89,7 @@ public class ConfigureService {
 			}						
 			
 			Protocal protocal = new Protocal(type, routers, switches);
+			configureController.config(protocal);
 			System.out.println(JSONObject.fromObject(protocal));
 			response.put("errCode", 0);
 			response.put("result", "Success");
