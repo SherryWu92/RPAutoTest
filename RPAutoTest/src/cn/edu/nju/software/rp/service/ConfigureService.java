@@ -52,7 +52,7 @@ public class ConfigureService {
                 ArrayList<Connection> conns = new ArrayList<Connection>();
                 JSONArray connArray = routerObject.getJSONArray("connections");
                 for(int j = 0; j < connArray.size(); j++) {
-                	JSONObject connObject = connArray.getJSONObject(i);
+                	JSONObject connObject = connArray.getJSONObject(j);
                 	Connection conn = new Connection(connObject.getString("port"), connObject.getString("ipAddress"), 
                 			connObject.getString("submask"), connObject.getString("network"), connObject.getString("area"),
                 			connObject.getString("target"));
@@ -77,7 +77,7 @@ public class ConfigureService {
                 ArrayList<Connection> conns = new ArrayList<Connection>();
                 JSONArray connArray = switchObject.getJSONArray("connections");
                 for(int j = 0; j < connArray.size(); j++) {
-                	JSONObject connObject = connArray.getJSONObject(i);
+                	JSONObject connObject = connArray.getJSONObject(j);
                 	Connection conn = new Connection(connObject.getString("port"), connObject.getString("ipAddress"), 
                 			connObject.getString("submask"), connObject.getString("network"), connObject.getString("area"),
                 			connObject.getString("target"));
