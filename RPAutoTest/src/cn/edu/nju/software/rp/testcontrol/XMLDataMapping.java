@@ -44,7 +44,7 @@ public class XMLDataMapping {
 				networks.add(port.getNetwork());
 			}
 		}
-		if (protocalType == "rip"){
+		if (protocalType.equals("rip")){
 			commands.add("router rip");
 			for(int i_net=0; i_net < networks.size(); i_net++){
 				commands.add("net "+ networks.get(i_net));

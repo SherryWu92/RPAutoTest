@@ -17,9 +17,9 @@ public class DeviceMap {
 		d3.setIP("12.0.0.4");
 		d3.setPassword("1234");
 		HashMap<String, DeviceInfo> map = new HashMap<String, DeviceInfo>();
-		map.put("1", d1);
-		map.put("2", d2);
-		map.put("3", d3);
+		map.put("R1", d1);
+		map.put("R2", d2);
+		map.put("R3", d3);
 		return map;
 	}
 
