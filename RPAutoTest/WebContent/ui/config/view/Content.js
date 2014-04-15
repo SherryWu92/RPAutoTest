@@ -6,7 +6,7 @@ includeJS("ui/config/view/Switch.js");
 includeJS("ui/config/view/Computer.js");
 
 function Content() {
-	var $contentDiv = $("<div class='content'></div>");
+	var $contentDiv = $("<div id='configContent' class='configContent'></div>");
 	var $imgView = null;
 	var $canvas = null;
 	var $xmlArea = null;
@@ -106,8 +106,9 @@ function Content() {
 	    var reader = new FileReader();
 	    reader.onloadend = function(evt) {
 	      if (evt.target.readyState == FileReader.DONE) { 
-	    	  showXmlView();
-	    	  $("#xmlArea").text(evt.target.result);
+//	    	  showXmlView();
+//	    	  $("#xmlArea").text(evt.target.result);
+	    	  mapToImgView();
 	      }
 	    };
 
@@ -120,9 +121,64 @@ function Content() {
 	    reader.readAsBinaryString(blob);
 	}
 	
+	function mapToImgView() {
+		var connInfo = {"routers":[{"connections":[{"area":"","ipAddress":"20.0.0.2","network":"20.0.0.1","port":"s0/1","submask":"255.0.0.0","target":"R2"}],"id":"R1","password":"","physicalIp":""},{"connections":[{"area":"","ipAddress":"20.0.0.2","network":"20.0.0.0","port":"s0/1","submask":"255.0.0.0","target":"R3"},{"area":"","ipAddress":"20.0.0.3","network":"20.0.0.0","port":"s0/2","submask":"255.0.0.0","target":"R1"}],"id":"R2","password":"1234","physicalIp":"192.168.2.1"},{"connections":[{"area":"","ipAddress":"20.0.0.4","network":"20.0.0.0","port":"s0/1","submask":"255.0.0.0","target":"R2"}],"id":"R3","password":"1234","physicalIp":"192.168.3.1"}],"switches":[],"type":"rip"};
+		//step 1.clear
+		showImgView();
+		clearCanvas();
+		//step 2.draw step 3.localStorage
+		var routers = connInfo.routers;
+		for(var i = 0; i < routers.length; i++) {
+			routerCount++;			
+			var id = "R" + routerCount;
+			var left = ($canvas.width() - 200) * Math.random() + 100;
+			var top = ($canvas.height() - 120) * Math.random() + 60;			
+			var $router = new Router(id, left, top);
+			$canvas.append($router);
+			addEndPoints(id);
+			
+			localStorage.setItem(id, JSON.stringify(routers[i]));
+		}
+		var switches = connInfo.switches;
+		for(var i = 0; i < switches.length; i++) {
+			switchCount++;			
+			var id = "SW" + switchCount;
+			var left = ($canvas.width() - 200) * Math.random() + 100;
+			var top = ($canvas.height() - 120) * Math.random() + 60;			
+			var $switch = new Switch(id, left, top);
+			$canvas.append($switch);
+			addEndPoints(id);
+			
+			localStorage.setItem(id, switches[i]);
+		}
+		
+		//step 4.connect
+		for(var i in routers) {
+			var router = routers[i];
+			var conns = router.connections;
+			for(var j in conns) {
+				var conn = conns[j];
+				connectEndPoints(router.id, conn.target);
+			}
+		}
+		
+		for(var i in switches) {
+			var _switch = switches[i];
+			var conns = _switch.connections;
+			for(var j in conns) {
+				var conn = conns[j];
+				connectEndPoints(_switch.id, conn.target);
+			}
+		}
+	}
+	
 	function clearCanvas() {
+		routerCount = 0;
+		switchCount = 0;
+		computerCount = 0;
+		jsPlumb.reset();
 		$canvas.empty();
-		localStorage.clear();
+		localStorage.clear();		
 	}
 	
 	function createMainView() {

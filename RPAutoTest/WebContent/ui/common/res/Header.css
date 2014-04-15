@@ -1,4 +1,13 @@
 @CHARSET "UTF-8";
+body {
+	background: #E9E9E9;
+	font: 11px/1.33 Verdana, sans-serif;
+}
+
+body > div {
+	border-radius: 10px;
+}
+
 .header {
 	width: 80%;			
 	margin: auto;

@@ -3,8 +3,8 @@ body {
 	background: #E9E9E9;
 	font: 11px/1.33 Verdana, sans-serif;
 }
+
 body > div {
-	margin: 10px auto 0 auto;
 	border-radius: 10px;
 }
 
@@ -12,19 +12,20 @@ a {
 	text-decoration: none;
 }
 
-.content {
+.configContent {
 	position: relative;
 	width: 80%;
 	height: 700px;
 	background-color: #bbbbbb;
-	color: white;			
+	color: white;	
+	margin: auto;		
 }
 
-.content ul {
+.configContent ul {
 	list-style: none;			
 }
 
-.content li {
+.configContent li {
 	float: right;
 }
 
@@ -43,7 +44,7 @@ a {
 	color: #000000;
 }
 
-.content .mainView {
+.configContent .mainView {
 	position: absolute;
 	background: #333333;
 	height: 88%;
@@ -101,14 +102,14 @@ a {
 	border-radius: 6px;	
 }	
 		
-.content .tabs {
+.configContent .tabs {
 	position: absolute;
 	left: 3%;
 	top: 94%;	
 	width: 95%;
 }
 
-.content .tabs a{
+.configContent .tabs a{
 	display: inline-block;
 	color: #333333;		
 	text-align: center;
@@ -118,16 +119,16 @@ a {
 	width: 100px;	
 }
 
-.content .tabs a.sel{
+.configContent .tabs a.sel{
 	background: #333333;	
 	color: white;		
 }
 
-.content .tabs a.sel:hover {
+.configContent .tabs a.sel:hover {
 	color: white;
 }
 
-.content .tabs a:hover {
+.configContent .tabs a:hover {
 	color: black;
 	border: 1px dotted #333333;
 }

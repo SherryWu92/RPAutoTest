@@ -1,29 +1,52 @@
- 
-    jsPlumb.importDefaults({
-        DragOptions : { cursor: 'pointer', zIndex:2000 },
-        EndpointStyle : { width:20, height:16, strokeStyle:'#666' },
-        Endpoint : "Rectangle"
-    });
+// 	jsPlumb.importDefaults({
+//        DragOptions : { cursor: 'pointer', zIndex:2000 },
+//        EndpointStyle : { width:20, height:16, strokeStyle:'#666' },
+//        Endpoint : "Rectangle"
+//    });
 
     var color1 = "#225588";
+    var anchors = [[0.7, 0, -1, 0], [1, 0.5, 0, 1], [0.7, 1, -1, 0], [ 0.4, 0.5, 0, 1 ]];//["TopCenter", "RightMiddle", "BottomCenter", "LeftMiddle"];
     var exampleEndpoint1 = {
-        endpoint:["Dot", { radius:3 }],
+        endpoint:["Dot", { radius:4 }],
         paintStyle:{ fillStyle:color1 },
         isSource:true,
-        scope:"blue dot",
         connectorStyle:{ strokeStyle:color1, lineWidth:2 },
         connector: ["Straight", { curviness:63 } ],
         maxConnections:1,
         isTarget:true
     };    
 
-    function addEndPoints(toId, anchors) {
-    	if(anchors == null) {
-    	    anchors = [[0.7, 0, -1, 0], [1, 0.5, 0, 1], [0.7, 1, -1, 0], [ 0.4, 0.5, 0, 1 ] ];//["TopCenter", "RightMiddle", "BottomCenter", "LeftMiddle"];
+    function addEndPoints(p_toId, p_anchors) {
+    	if(p_anchors != null) {
+    	    anchors = p_anchors;
     	}
         for (var i = 0; i < anchors.length; i++) {
-            jsPlumb.addEndpoint(toId, { anchor:anchors[i]}, exampleEndpoint1);                       
+            jsPlumb.addEndpoint(p_toId, { anchor:anchors[i]}, exampleEndpoint1);                       
         }
         jsPlumb.draggable(jsPlumb.getSelector(".device"), {containment: "#canvas"});         
     }
  
+    function connectEndPoints(sourceId, targetId, sPointIndex, tPointIndex) {
+    	var sConns1 = jsPlumb.getConnections({source: sourceId});
+    	var sConns2 = jsPlumb.getConnections({target: sourceId});
+    	
+    	var tConns1 = jsPlumb.getConnections({source: targetId});
+    	var tConns2 = jsPlumb.getConnections({target: targetId});
+    	
+		for(var i in tConns1) {			
+			if(sourceId == tConns1[i].targetId) {
+				return;
+			}
+		}		
+				
+		var sPointIndex = sConns1.length + sConns2.length;
+		var tPointIndex = tConns1.length + tConns2.length;
+    	jsPlumb.connect({
+    		source: sourceId,
+    		target: targetId,
+    		anchors: [anchors[sPointIndex], anchors[tPointIndex]],
+            endpoint:["Dot", { radius:4 }],
+            paintStyle:{ strokeStyle:color1, lineWidth:2  },
+            connector: ["Straight", { curviness:63 } ]           
+    	});
+    }

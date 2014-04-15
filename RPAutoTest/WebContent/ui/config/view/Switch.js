@@ -43,7 +43,7 @@ function Switch(p_id, p_left, p_top) {
 		var id = p_id;
 		var storeConnections = $.extend(true, [], connInfo.connections);
 		connInfo.connections = [];
-		var connections = jsPlumb.getConnections({scope:"blue dot", source: id});		
+		var connections = jsPlumb.getConnections({source: id});		
 		for(var i in connections) {			
 			var newConn = {};
 			newConn.port = "";
@@ -56,7 +56,7 @@ function Switch(p_id, p_left, p_top) {
 			connInfo.connections.push(conn);
 		}
 				
-		connections = jsPlumb.getConnections({scope:"blue dot", target: id});
+		connections = jsPlumb.getConnections({target: id});
 		for(var i in connections) {
 			var newConn = {};
 			newConn.port = "";
