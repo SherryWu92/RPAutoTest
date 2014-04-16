@@ -31,6 +31,57 @@ public class XMLDataMapping {
 		return testcases;
 	}
 	
+	public Protocal mapping(TestCases t){
+		ArrayList<Equipment> equips = t.getTestcase().get(0).getEquipments().getEquipment();
+		ArrayList<Router> routers = new ArrayList<Router>();
+		ArrayList<Switch> switches = new ArrayList<Switch>();
+		for (int i_equip=0; i_equip < equips.size(); i_equip++){
+			Equipment equip = equips.get(i_equip);
+			if (equip.getId().charAt(0) == 'R'){
+				Router r = new Router();
+				r.setId(equip.getId());
+				ArrayList<Connection> c = this.parseCommands(equip.getCommands());
+				r.setConnections(c);
+				routers.add(r);
+			}else if (equip.getId().charAt(0) == 'S'){
+				Switch s = new Switch();
+				s.setId(equip.getId());
+				s.setConnections(this.parseCommands(equip.getCommands()));
+				switches.add(s);
+			}
+		}
+		Protocal p = new Protocal();
+		p.setRouters(routers);
+		p.setSwitches(switches);
+		p.setType(this.parseProtocalType(equips.get(0).getCommands()));
+		return p;
+	}
+	
+	private String parseProtocalType(ArrayList<String> commands){
+		for (int i_command=0; i_command < commands.size(); i_command++){
+			String command = commands.get(i_command);
+			if (command.startsWith("router")){
+				if (command.contains("rip")){
+					return "rip";
+				}
+				if (command.contains("ospf")){
+					return "ospf";
+				}
+			}
+		}
+		return null;
+	}
+	
+	private ArrayList<Connection> parseCommands(ArrayList<String> commands){
+		for (int i_command=0; i_command < commands.size(); i_command++){
+			String command = commands.get(i_command);
+			if (command.contains("int")){
+				
+			}
+		}
+		return null;
+	}
+	
 	private ArrayList<String> makeCommands(ArrayList<Connection> ports, String protocalType){
 		ArrayList<String> commands = new ArrayList<String>();
 		ArrayList<String> networks = new ArrayList<String>();

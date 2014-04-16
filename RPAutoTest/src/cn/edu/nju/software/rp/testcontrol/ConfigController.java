@@ -25,6 +25,18 @@ public class ConfigController {
 		return true;
 	}
 	
+	public boolean parseXML(File xmlfile){
+		DeviceMediator dm = new DeviceMediator();
+		try {
+			TestCases t = dm.unmarshal(xmlfile);
+			
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
 	private void marshal(TestCases root, String saveFilePath) throws JAXBException{
 		JAXBContext jaxbContext = JAXBContext.newInstance(TestCases.class);
 	    Marshaller jaxbMarshaller = jaxbContext.createMarshaller();

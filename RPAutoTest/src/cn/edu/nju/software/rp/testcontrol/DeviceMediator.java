@@ -36,17 +36,17 @@ public class DeviceMediator {
 	    return pyObject;
 	}
 
-	private TestCases unmarshal(String xmlpath) throws JAXBException{
+	public TestCases unmarshal(File xmlfile) throws JAXBException{
 		JAXBContext jaxbContext = JAXBContext.newInstance(TestCases.class);
 		Unmarshaller unMarshaller = jaxbContext.createUnmarshaller();
-	    TestCases t = (TestCases)unMarshaller.unmarshal(new File(xmlpath));
+	    TestCases t = (TestCases)unMarshaller.unmarshal(xmlfile);
 	    return t;
 	}
 	
 	public void config(String xmlpath){
 		PyObject pyconfig = this.getPythonClassInstance("C:\\Users\\njusoftware\\git\\RPAutoTest\\AutoLib\\config.py", "Config");
 		try {
-			TestCases t = this.unmarshal(xmlpath);
+			TestCases t = this.unmarshal(new File(xmlpath));
 			ArrayList<TestCase> cases = t.getTestcase();
 			for(int i_case=0; i_case < cases.size(); i_case++){
 				ArrayList<Equipment> equips = cases.get(i_case).getEquipments().getEquipment();
