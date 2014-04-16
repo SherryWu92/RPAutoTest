@@ -11,8 +11,8 @@ public class Switch extends Device {
 		
 	}
 	
-	public Switch(String id, ArrayList<Connection> connections) {
-		 super(id, connections);
+	public Switch(String id, String physicalIp, String password, ArrayList<Connection> connections) {
+		 super(id, physicalIp, password, connections);
 	}
 
 }

@@ -11,8 +11,8 @@ public class Router extends Device {
 		
 	}
 	
-	public Router(String id, ArrayList<Connection> connections) {
-		 super(id, connections);
+	public Router(String id, String physicalIp, String password, ArrayList<Connection> connections) {
+		 super(id, physicalIp, password, connections);
 	}
 
 }

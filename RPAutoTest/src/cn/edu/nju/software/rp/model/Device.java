@@ -12,8 +12,10 @@ public class Device {
 		
 	}
 	
-	public Device(String id, ArrayList<Connection> connections) {
+	public Device(String id, String physicalIp, String password, ArrayList<Connection> connections) {
 		this.id = id;
+		this.physicalIp = physicalIp;
+		this.password = password;
 		this.connections = connections;
 	}
 	
