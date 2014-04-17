@@ -30,7 +30,7 @@ body > div {
 
 .home .content {
 	position: relative;
-	width: 70%;
+	width: 76%;
 	height: 600px;
 	color: white;		
 	padding: 5%;		
@@ -40,14 +40,13 @@ body > div {
 .home .content > div {
 	position: relative;
 	font-size: 22px;
-	height: 280px;
+	height: 80px;
 	width: 26%;
 	background: #444;
-	float: left;
 	text-align: center;
 	line-height: 68px;
-	margin-left: 5%;
-	padding-top: 50px; 
+	margin-bottom: 30px;
+	padding-top: 10px; 
 	opacity: 1;
 	color: #fff;
 	cursor: pointer;

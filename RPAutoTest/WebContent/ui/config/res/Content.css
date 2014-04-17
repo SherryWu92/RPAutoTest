@@ -58,7 +58,7 @@ a {
 	float: left;
 	left: 2%;
 	top: 5%;
-	width: 15%;
+	width: 12%;
 	height: 90%;
 	/*border: 1px dashed #666666;*/
 	background: #cccccc;
@@ -68,13 +68,15 @@ a {
 .mainView #machines	> div {
 	position: relative;
 	padding-top: 10px;
-	width:96px;
+	width:72px;
 	margin: auto;
 }
 
 .mainView #machines	img{
 	position: relative;
 	opacity: 0.9;
+	width:72px;
+	height:72px
 }
 
 .mainView #machines	img:hover {
@@ -83,9 +85,9 @@ a {
 
 .mainView #canvas {
 	position: relative;
-	left: 18%;
+	left: 15%;
 	top: 5%;
-	width: 80%;
+	width: 83%;
 	height: 90%;
 	background: #cccccc;
 	border-radius: 6px;

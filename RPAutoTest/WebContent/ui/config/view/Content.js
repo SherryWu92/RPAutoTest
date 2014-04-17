@@ -3,7 +3,6 @@ includeCSS("ui/config/res/Content.css");
 includeJS("ui/common/service/ServiceClient.js");
 includeJS("ui/config/view/Router.js");
 includeJS("ui/config/view/Switch.js");
-includeJS("ui/config/view/Computer.js");
 
 function Content() {
 	var $contentDiv = $("<div id='configContent' class='configContent'></div>");
@@ -12,7 +11,6 @@ function Content() {
 	var $xmlArea = null;
 	var routerCount = 0;
 	var switchCount = 0;
-	var computerCount = 0;
 	init();
 	
 	function init() {
@@ -27,8 +25,6 @@ function Content() {
 	function createMenu() {
 		var $menuUl = $("<ul id='menu'></ul>");
 		
-		var $undoLi = $("<li><a href='#' id='menu-undo' class=''>Undo</a></li>");
-		var $redoLi = $("<li><a href='#' id='menu-redo' class=''>Redo</a></li>");
 		var $importLi = $("<li><a href='#' id='menu-import' class=''>Import</a></li>");
 		var $saveLi = $("<li><a href='#' id='menu-save' class=''>Save</a></li>");
 		var $configureLi = $("<li><a href='#' id='menu-configure' class=''>Configure</a></li>");
@@ -38,8 +34,6 @@ function Content() {
 		$menuUl.append($configureLi);
 		$menuUl.append($saveLi);
 		$menuUl.append($importLi);
-		$menuUl.append($redoLi);
-		$menuUl.append($undoLi);
 
 		$contentDiv.append($menuUl);				
 		
@@ -122,8 +116,8 @@ function Content() {
 		for(var i = 0; i < routers.length; i++) {
 			routerCount++;			
 			var id = "R" + routerCount;
-			var left = ($canvas.width() - 200) * Math.random() + 100;
-			var top = ($canvas.height() - 120) * Math.random() + 60;			
+			var left = ($canvas.width() - 240) * Math.random() + 120;
+			var top = ($canvas.height() - 150) * Math.random() + 75;			
 			var $router = new Router(id, left, top);
 			$canvas.append($router);
 			addEndPoints(id);
@@ -251,15 +245,9 @@ function Content() {
 		var $switchImg = $("<img src='ui/config/res/images/switch.png'>");
 		$switchDiv.append($switchImg);
 		$switchImg.draggable({zIndex:100, revert: "invalid", helper: "clone", cursor: "move" });
-
-		var $computerDiv = $("<div id='computer'></div>");
-		var $computerImg = $("<img src='ui/config/res/images/computer.png'>");
-		$computerDiv.append($computerImg);
-		$computerImg.draggable({zIndex:100, revert: "invalid", helper: "clone", cursor: "move" });
 		
 		$machinesDiv.append($routerDiv);
 		$machinesDiv.append($switchDiv);
-		$machinesDiv.append($computerDiv);
 		
 		$imgView.append($machinesDiv);
 	}
@@ -285,11 +273,6 @@ function Content() {
 					switchCount++;
 					id = "SW" + switchCount;
 					$device = new Switch(id, left, top);
-				}
-				else if(src.indexOf("computer") != -1) {
-					computerCount++;
-					id = "C" + computerCount;
-					$device = new Computer(id, left, top);
 				}
 
 				$(this).append($device);
