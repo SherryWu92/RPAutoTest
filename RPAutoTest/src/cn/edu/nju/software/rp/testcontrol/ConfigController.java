@@ -25,16 +25,17 @@ public class ConfigController {
 		return true;
 	}
 	
-	public boolean parseXML(File xmlfile){
+	public Protocal parseXML(File xmlfile){
+		XMLDataMapping mapper = new XMLDataMapping();
 		DeviceMediator dm = new DeviceMediator();
 		try {
 			TestCases t = dm.unmarshal(xmlfile);
-			
+			Protocal p = mapper.mapping(t);
+			return p;
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return true;
+		return null;
 	}
 	
 	private void marshal(TestCases root, String saveFilePath) throws JAXBException{

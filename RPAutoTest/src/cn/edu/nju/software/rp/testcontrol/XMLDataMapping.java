@@ -73,13 +73,55 @@ public class XMLDataMapping {
 	}
 	
 	private ArrayList<Connection> parseCommands(ArrayList<String> commands){
+		ArrayList<Connection> cons = new ArrayList<Connection>();
+		// boolean a_new_connection = false;
+		Connection c = null;
+
 		for (int i_command=0; i_command < commands.size(); i_command++){
 			String command = commands.get(i_command);
-			if (command.contains("int")){
-				
+			
+			if (command.startsWith("int")){
+				// a_new_connection = true;
+				String port = command.split(" ")[1];
+				c = new Connection();	
+				c.setPort(port);
 			}
+			if (command.startsWith("ip add")){
+				// a_new_connection = false;
+				String ip = command.split(" ")[2];
+				c.setIpAddress(ip);
+				String submask = command.split(" ")[3];
+				c.setSubmask(submask);
+				c.setNetwork(this.computeNetwork(ip, submask));
+			}
+			if (command.startsWith("no sh")){
+				// a_new_connection = false;
+				cons.add(c);
+			}
+			
 		}
-		return null;
+		
+		return cons;
+	}
+	
+	private String computeNetwork(String ip, String submask){
+		String[] ips = ip.split("\\.");
+		String[] subs = submask.split("\\.");
+		int ip_1 = Integer.parseInt(ips[0]);
+		int ip_2 = Integer.parseInt(ips[1]);
+		int ip_3 = Integer.parseInt(ips[2]);
+		int ip_4 = Integer.parseInt(ips[3]);
+		int sub_1 = Integer.parseInt(subs[0]);
+		int sub_2 = Integer.parseInt(subs[1]);
+		int sub_3 = Integer.parseInt(subs[2]);
+		int sub_4 = Integer.parseInt(subs[3]);
+		int net_1 = ip_1 & sub_1;
+		int net_2 = ip_2 & sub_2;
+		int net_3 = ip_3 & sub_3;
+		int net_4 = ip_4 & sub_4;
+		
+		String network = String.valueOf(net_1)+"."+String.valueOf(net_2)+"."+String.valueOf(net_3)+"."+String.valueOf(net_4);
+		return network;
 	}
 	
 	private ArrayList<String> makeCommands(ArrayList<Connection> ports, String protocalType){
