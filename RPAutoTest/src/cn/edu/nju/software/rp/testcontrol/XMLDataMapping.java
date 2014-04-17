@@ -50,6 +50,25 @@ public class XMLDataMapping {
 				switches.add(s);
 			}
 		}
+		for (int i_router=0; i_router < routers.size(); i_router++){
+			ArrayList<Connection> cons = routers.get(i_router).getConnections();
+			for (int i_con=0; i_con < cons.size(); i_con++){
+				Connection c = cons.get(i_con);
+				if (c.getTarget() != null) continue;
+				String net = c.getNetwork();
+				for (int i_compare=i_router+1; i_compare < routers.size(); i_compare++){
+					ArrayList<Connection> cons_compare = routers.get(i_compare).getConnections();
+					for (int k_con=0; k_con < cons_compare.size(); k_con++){
+						Connection c_compare = cons_compare.get(k_con);
+						String net_compare = c_compare.getNetwork();
+						if (net.equals(net_compare)){
+							c.setTarget(routers.get(i_compare).getId());
+							c_compare.setTarget(routers.get(i_router).getId());
+						}
+					}
+				}
+			}
+		}
 		Protocal p = new Protocal();
 		p.setRouters(routers);
 		p.setSwitches(switches);
