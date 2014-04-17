@@ -1,6 +1,10 @@
 package cn.edu.nju.software.rp.testcontrol;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -25,6 +29,33 @@ public class ConfigController {
 			e.printStackTrace();
 		}
 		return true;
+	}
+	
+	public String getXMLString(Protocal p){
+		XMLDataMapping xmlMap = new XMLDataMapping();
+		TestCases cases = xmlMap.mapping(p);
+		String tempFilePath = "c:\\test\\temp.xml";
+		try{
+			this.marshal(cases, tempFilePath);
+		}catch (JAXBException e){
+			e.printStackTrace();
+		}
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader( new FileReader(tempFilePath));
+			String         line = null;
+		    StringBuilder  stringBuilder = new StringBuilder();
+		    String         ls = System.getProperty("line.separator");
+		    while( ( line = reader.readLine() ) != null ) {
+		        stringBuilder.append( line );
+		        stringBuilder.append( ls );
+		    }
+		    return stringBuilder.toString();
+		    
+		}catch (IOException e) {
+			e.printStackTrace();
+		}	    
+		return null;
 	}
 	
 	public Protocal parseXML(String xmlcontent){
