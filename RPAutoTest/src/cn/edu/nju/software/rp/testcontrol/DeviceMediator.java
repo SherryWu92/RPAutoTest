@@ -58,11 +58,12 @@ public class DeviceMediator {
 		try {
 			TestCases t = this.unmarshal(new File(xmlpath));
 			ArrayList<TestCase> cases = t.getTestcase();
+			DeviceMap deviceMap = new DeviceMap();
 			for(int i_case=0; i_case < cases.size(); i_case++){
 				ArrayList<Equipment> equips = cases.get(i_case).getEquipments().getEquipment();
 				for(int i_equip=0; i_equip < equips.size(); i_equip++){
 					String id = equips.get(i_equip).getId();
-					DeviceInfo info = DeviceMap.getMap().get(id);
+					DeviceInfo info = deviceMap.getMap().get(id);
 					ArrayList<String> commands = equips.get(i_equip).getCommands();
 					PyObject[] paras = new PyObject[3];
 					paras[0] = new PyString(info.getIP());

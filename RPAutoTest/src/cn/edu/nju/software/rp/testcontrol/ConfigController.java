@@ -12,8 +12,10 @@ import cn.edu.nju.software.rp.xmlmodel.TestCases;
 public class ConfigController {
 
 	public boolean config(Protocal p){
-		XMLDataMapping mapper = new XMLDataMapping();
-		TestCases cases = mapper.mapping(p);
+		DeviceMap deviceMap = new DeviceMap();
+		deviceMap.setMap(p);
+		XMLDataMapping xmlMap = new XMLDataMapping();
+		TestCases cases = xmlMap.mapping(p);
 		try {
 			this.marshal(cases, "c:\\test\\test.xml");
 			DeviceMediator dm = new DeviceMediator();
