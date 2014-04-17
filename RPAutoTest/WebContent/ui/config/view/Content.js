@@ -52,7 +52,7 @@ function Content() {
 			console.debug(protocalInfo);
 			ServiceClient.invoke("configure/getXml", protocalInfo).done(function(p_results){
 				console.debug(p_results);
-				var fileContent = p_results.xml;
+				var fileContent = p_results.content;
 				saveFile(fileContent, "text/xml", "protocal.xml"); 
 			});
 		});
@@ -87,12 +87,12 @@ function Content() {
 	    reader.onloadend = function(evt) {
 	      if (evt.target.readyState == FileReader.DONE) { 
 //	    	  showXmlView();
-//	    	  $("#xmlArea").text(evt.target.result);
-	    	  mapToImgView();
+//	    	  $("#xmlArea").text(evt.target.result);	    	  
 	    	  var xmlInfo = {};
-	    	  xmlInfo.xml = evt.target.result;
-	    	  ServiceClient.invoke("configure/xmlMap", xmlInfo).done(function(p_results){
+	    	  xmlInfo.content = evt.target.result;
+	    	  ServiceClient.invoke("configure/parseXML", xmlInfo).done(function(p_results){
 	    		  console.debug(p_results);
+	    		  mapToImgView(p_results);
 	    	  });
 	      }
 	    };
@@ -106,8 +106,9 @@ function Content() {
 	    reader.readAsBinaryString(blob);
 	}
 	
-	function mapToImgView() {
-		var connInfo = {"routers":[{"connections":[{"area":"","ipAddress":"20.0.0.2","network":"20.0.0.1","port":"s0/1","submask":"255.0.0.0","target":"R2"}],"id":"R1","password":"","physicalIp":""},{"connections":[{"area":"","ipAddress":"20.0.0.2","network":"20.0.0.0","port":"s0/1","submask":"255.0.0.0","target":"R3"},{"area":"","ipAddress":"20.0.0.3","network":"20.0.0.0","port":"s0/2","submask":"255.0.0.0","target":"R1"}],"id":"R2","password":"1234","physicalIp":"192.168.2.1"},{"connections":[{"area":"","ipAddress":"20.0.0.4","network":"20.0.0.0","port":"s0/1","submask":"255.0.0.0","target":"R2"}],"id":"R3","password":"1234","physicalIp":"192.168.3.1"}],"switches":[],"type":"rip"};
+	function mapToImgView(p_connInfo) {
+//		var connInfo = {"routers":[{"connections":[{"area":"","ipAddress":"20.0.0.2","network":"20.0.0.1","port":"s0/1","submask":"255.0.0.0","target":"R2"}],"id":"R1","password":"","physicalIp":""},{"connections":[{"area":"","ipAddress":"20.0.0.2","network":"20.0.0.0","port":"s0/1","submask":"255.0.0.0","target":"R3"},{"area":"","ipAddress":"20.0.0.3","network":"20.0.0.0","port":"s0/2","submask":"255.0.0.0","target":"R1"}],"id":"R2","password":"1234","physicalIp":"192.168.2.1"},{"connections":[{"area":"","ipAddress":"20.0.0.4","network":"20.0.0.0","port":"s0/1","submask":"255.0.0.0","target":"R2"}],"id":"R3","password":"1234","physicalIp":"192.168.3.1"}],"switches":[],"type":"rip"};
+		var connInfo = p_connInfo;
 		//step 1.clear
 		showImgView();
 		clearCanvas();

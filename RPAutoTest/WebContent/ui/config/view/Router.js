@@ -33,6 +33,8 @@ function Router(p_id, p_left, p_top) {
 		if(connInfo == null) {
 			connInfo = {};
 			connInfo.id = p_id;
+			connInfo.physicalIp = "";
+			connInfo.password = "";
 			connInfo.connections = [];
 		}
 		else {

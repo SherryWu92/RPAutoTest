@@ -13,7 +13,7 @@ import net.sf.json.JSONObject;
 
 public class JSONDataMapping {
 	
-	public Protocal mapProtocal(JSONObject protocalInfo) {
+	public Protocal mapToProtocal(JSONObject protocalInfo) {
 		try {
 			String type = protocalInfo.getString("type");
 			
@@ -72,5 +72,70 @@ public class JSONDataMapping {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public JSONObject mapToJSON(Protocal protocal) {
+		JSONObject protocalInfo = new JSONObject(); 
+		protocalInfo.put("type", protocal.getType());
+		
+		JSONArray routers = new JSONArray();		
+		
+		ArrayList<Router> routerArr = protocal.getRouters();
+		for(int i = 0; i < routerArr.size(); i++) {
+			Router r = routerArr.get(i);
+			JSONObject router = new JSONObject();
+			router.put("id", r.getId());
+			router.put("physicalIp", r.getPhysicalIp());
+			router.put("password", r.getPassword());
+			
+			ArrayList<Connection> conns = r.getConnections();
+			JSONArray connections = new JSONArray();
+			for(int j = 0; j < conns.size(); j++) {
+				Connection conn = conns.get(j);
+				JSONObject connection = new JSONObject();
+				connection.put("port", conn.getPort());
+				connection.put("ipAddress", conn.getIpAddress());
+				connection.put("submask", conn.getSubmask());
+				connection.put("network", conn.getNetwork());
+				connection.put("area", conn.getArea());
+				connection.put("target", conn.getTarget());	
+				
+				connections.add(connection);
+			}
+			router.put("connections", connections);			
+			routers.add(router);
+		}
+		protocalInfo.put("routers", routers);
+		
+		
+		JSONArray switches = new JSONArray();		
+		
+		ArrayList<Switch> switchArr = protocal.getSwitches();
+		for(int i = 0; i < switchArr.size(); i++) {
+			Switch sw = switchArr.get(i);
+			JSONObject _switch = new JSONObject();
+			_switch.put("id", sw.getId());
+			_switch.put("physicalIp", sw.getPhysicalIp());
+			_switch.put("password", sw.getPassword());
+			
+			ArrayList<Connection> conns = sw.getConnections();
+			JSONArray connections = new JSONArray();
+			for(int j = 0; j < conns.size(); j++) {
+				Connection conn = conns.get(j);
+				JSONObject connection = new JSONObject();
+				connection.put("port", conn.getPort());
+				connection.put("ipAddress", conn.getIpAddress());
+				connection.put("submask", conn.getSubmask());
+				connection.put("network", conn.getNetwork());
+				connection.put("area", conn.getArea());
+				connection.put("target", conn.getTarget());	
+				
+				connections.add(connection);
+			}
+			_switch.put("connections", connections);			
+			switches.add(_switch);
+		}
+		protocalInfo.put("switches", switches);
+		return protocalInfo;
 	}
 }

@@ -155,9 +155,10 @@ function SettingDialog(p_connInfo) {
 		$controlInt = $('<div class="controlInt"></div>');
 		
 		var $physicalIpLabel = $('<label>Physical-Ip</label>');
-		var $physicalIpInput = $('<input type="text" id="physicalIp" class="physicalIp" placeholder="192.168.1.1"/>');
+		var $physicalIpInput = $('<input type="text" id="physicalIp" class="physicalIp" placeholder="192.168.1.1" value="' + connInfo.physicalIp + '"/>');
+		
 		var $passwordLabel = $('<label>Password</label>');
-		var $passwordInput = $('<input type="password" id="password" class="password" />');
+		var $passwordInput = $('<input type="password" id="password" class="password"  value="' + connInfo.password + '"/>');
 		
 		$controlInt.append($physicalIpLabel);
 		$controlInt.append($physicalIpInput);

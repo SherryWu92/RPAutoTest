@@ -30,7 +30,7 @@ public class ConfigureService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONObject configureProtocal(JSONObject protocalInfo) {
 		JSONObject response = new JSONObject();
-		Protocal protocal = jsonDataMapping.mapProtocal(protocalInfo);
+		Protocal protocal = jsonDataMapping.mapToProtocal(protocalInfo);
 		if(protocal != null) {
 			configureController.config(protocal);
 			System.out.println(JSONObject.fromObject(protocal));
@@ -46,16 +46,16 @@ public class ConfigureService {
 	
 	
 	@POST
-	@Path("/xmlMap")
+	@Path("/parseXML")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public JSONObject xmlMap(JSONObject xmlInfo) {
+	public JSONObject parseXML(JSONObject xmlInfo) {
 		JSONObject response = new JSONObject();
 		
-		String xml = xmlInfo.getString("xml");
-		System.out.println(xml);
-		JSONObject protocalInfo = new JSONObject(); 
-		
+		String xmlContent = xmlInfo.getString("content");
+		System.out.println(xmlContent);
+		Protocal protocal = configureController.parseXML(xmlContent);
+		JSONObject protocalInfo = jsonDataMapping.mapToJSON(protocal); 		
 		
 		response.put("errCode", 0);
 		response.put("result", protocalInfo);
@@ -69,10 +69,10 @@ public class ConfigureService {
 	public JSONObject getXml(JSONObject protocalInfo) {
 		JSONObject response = new JSONObject();
 
-		Protocal protocal = jsonDataMapping.mapProtocal(protocalInfo);
+		Protocal protocal = jsonDataMapping.mapToProtocal(protocalInfo);
 		if(protocal != null) {
 			JSONObject xmlInfo = new JSONObject(); 		
-			xmlInfo.put("xml", "<command>conf t</command>");
+			xmlInfo.put("content", "<command>conf t</command>");
 			
 			response.put("errCode", 0);
 			response.put("result", xmlInfo);
