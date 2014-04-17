@@ -76,13 +76,13 @@ a {
 	color: black;			
 }
 
-.controlInt label {
+.setting .controlInt label {
 	display: inline-block;
 	position: relative;
 	margin-left: 10%;
 }
 
-.controlInt input {
+.setting .controlInt input {
 	display: inline-block;
 	position: relative;
 	margin-left: 2%;
@@ -92,7 +92,7 @@ a {
 	width: 50px;
 }
 
-.operation {
+.setting .operation {
 	position: absolute;
 	left: 10%;
 	bottom: 6%;
@@ -100,7 +100,7 @@ a {
 	text-align: center;
 }
 
-.operation a {
+.setting .operation a {
 	display: inline-block;
 	color: white;
 	text-align: center;
@@ -113,7 +113,7 @@ a {
 	margin-left: 10px;
 }
 
-.operation a:hover {
+.setting .operation a:hover {
 	color: #298cad;
 	background: white;
 	border: 1px solid #298cad;

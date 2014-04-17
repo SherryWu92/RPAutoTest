@@ -63,16 +63,18 @@ public class ConfigureService {
 	}
 	
 	@POST
-	@Path("/getXml")
+	@Path("/saveXml")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public JSONObject getXml(JSONObject protocalInfo) {
+	public JSONObject saveXml(JSONObject protocalInfo) {
 		JSONObject response = new JSONObject();
 
 		Protocal protocal = jsonDataMapping.mapToProtocal(protocalInfo);
 		if(protocal != null) {
-			JSONObject xmlInfo = new JSONObject(); 		
-			xmlInfo.put("content", "<command>conf t</command>");
+			JSONObject xmlInfo = new JSONObject(); 	
+			
+			String xmlContent = configureController.getXMLString(protocal);	
+			xmlInfo.put("content", xmlContent);
 			
 			response.put("errCode", 0);
 			response.put("result", xmlInfo);

@@ -1,6 +1,7 @@
 includeCSS("ui/config/res/Content.css");
 
 includeJS("ui/common/service/ServiceClient.js");
+includeJS("ui/common/view/LogDialog.js");
 includeJS("ui/config/view/Router.js");
 includeJS("ui/config/view/Switch.js");
 
@@ -50,7 +51,7 @@ function Content() {
 		$saveLi.click(function() {
 			var protocalInfo = getProtocalInfo();			
 			console.debug(protocalInfo);
-			ServiceClient.invoke("configure/getXml", protocalInfo).done(function(p_results){
+			ServiceClient.invoke("configure/saveXml", protocalInfo).done(function(p_results){
 				console.debug(p_results);
 				var fileContent = p_results.content;
 				saveFile(fileContent, "text/xml", "protocal.xml"); 
@@ -61,9 +62,11 @@ function Content() {
 			var protocalInfo = getProtocalInfo();			
 			console.debug(protocalInfo);
 			ServiceClient.invoke("configure/protocal", protocalInfo).done(function(p_results){
-				console.debug(p_results);
-			});
-			
+				console.debug(p_results);		
+				var body = $('body');
+				var $logDialog = new LogDialog("Run Log", p_results);
+				body.append($logDialog);
+			});			
 		});
 		
 		$clearLi.click(function() {

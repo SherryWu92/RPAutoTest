@@ -85,8 +85,10 @@ public class JSONDataMapping {
 			Router r = routerArr.get(i);
 			JSONObject router = new JSONObject();
 			router.put("id", r.getId());
-			router.put("physicalIp", r.getPhysicalIp());
-			router.put("password", r.getPassword());
+			String physicalIp = r.getPhysicalIp() != null ? r.getPhysicalIp() : "";
+			router.put("physicalIp", physicalIp);
+			String password = r.getPassword() != null ? r.getPassword() : "";
+			router.put("password", password);
 			
 			ArrayList<Connection> conns = r.getConnections();
 			JSONArray connections = new JSONArray();
@@ -97,7 +99,8 @@ public class JSONDataMapping {
 				connection.put("ipAddress", conn.getIpAddress());
 				connection.put("submask", conn.getSubmask());
 				connection.put("network", conn.getNetwork());
-				connection.put("area", conn.getArea());
+				String area = conn.getArea() != null ? conn.getArea() : "";
+				connection.put("area", area);
 				connection.put("target", conn.getTarget());	
 				
 				connections.add(connection);
@@ -115,8 +118,10 @@ public class JSONDataMapping {
 			Switch sw = switchArr.get(i);
 			JSONObject _switch = new JSONObject();
 			_switch.put("id", sw.getId());
-			_switch.put("physicalIp", sw.getPhysicalIp());
-			_switch.put("password", sw.getPassword());
+			String physicalIp = sw.getPhysicalIp() != null ? sw.getPhysicalIp() : "";
+			_switch.put("physicalIp", physicalIp);
+			String password = sw.getPassword() != null ? sw.getPassword() : "";
+			_switch.put("password", password);
 			
 			ArrayList<Connection> conns = sw.getConnections();
 			JSONArray connections = new JSONArray();
@@ -127,7 +132,8 @@ public class JSONDataMapping {
 				connection.put("ipAddress", conn.getIpAddress());
 				connection.put("submask", conn.getSubmask());
 				connection.put("network", conn.getNetwork());
-				connection.put("area", conn.getArea());
+				String area = conn.getArea() != null ? conn.getArea() : "";
+				connection.put("area", area);
 				connection.put("target", conn.getTarget());	
 				
 				connections.add(connection);
