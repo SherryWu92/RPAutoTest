@@ -1,11 +1,13 @@
 package cn.edu.nju.software.rp.testcontrol;
 
 import java.io.File;
+import java.io.StringReader;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.stream.StreamSource;
 
 import org.python.core.PyList;
 import org.python.core.PyObject;
@@ -40,6 +42,14 @@ public class DeviceMediator {
 		JAXBContext jaxbContext = JAXBContext.newInstance(TestCases.class);
 		Unmarshaller unMarshaller = jaxbContext.createUnmarshaller();
 	    TestCases t = (TestCases)unMarshaller.unmarshal(xmlfile);
+	    return t;
+	}
+	
+	public TestCases unmarshal(String xmlcontent) throws JAXBException{
+		JAXBContext jaxbContext = JAXBContext.newInstance(TestCases.class);
+		Unmarshaller unMarshaller = jaxbContext.createUnmarshaller();
+		StringBuffer xmlStr = new StringBuffer(xmlcontent);
+		TestCases t = (TestCases)unMarshaller.unmarshal(new StreamSource(new StringReader(xmlStr.toString())));
 	    return t;
 	}
 	

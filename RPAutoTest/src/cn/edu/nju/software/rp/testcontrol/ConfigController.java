@@ -25,11 +25,11 @@ public class ConfigController {
 		return true;
 	}
 	
-	public Protocal parseXML(File xmlfile){
+	public Protocal parseXML(String xmlcontent){
 		XMLDataMapping mapper = new XMLDataMapping();
 		DeviceMediator dm = new DeviceMediator();
 		try {
-			TestCases t = dm.unmarshal(xmlfile);
+			TestCases t = dm.unmarshal(xmlcontent);
 			Protocal p = mapper.mapping(t);
 			return p;
 		} catch (JAXBException e) {
