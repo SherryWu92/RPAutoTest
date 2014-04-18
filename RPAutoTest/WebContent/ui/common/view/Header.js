@@ -6,6 +6,6 @@ function Header(p_title) {
 	var $titleSpan = $("<span class='title'>" + p_title + "</span>");
 	$headerDiv.append($homeSpan);
 	$headerDiv.append($titleSpan);
-	
+
 	return $headerDiv;
 };

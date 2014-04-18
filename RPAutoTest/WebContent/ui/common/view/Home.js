@@ -1,13 +1,15 @@
 includeCSS("ui/common/res/Home.css");
 
 var $homeDiv = null;
-function Home(p_configView) {
-    $homeDiv = $('<div class="home"></div>');
+function Home(p_configView, p_runLogView) {
+    $homeDiv = $('<div class="home"></div>');           
     var $contentDiv = null;
     var $navDiv = null;
     var $showViewDiv = null;
     var imgs = [];
 	init();
+	
+	var that = this;
 	
 	function init() {
 		createHeader();
@@ -38,17 +40,17 @@ function Home(p_configView) {
 		$contentDiv.append($navDiv);
 		
 		$configDiv.click(function() {
-			$homeDiv.detach();
-			p_configView.show();
+			that.hide();
+			p_configView.show(that);
 		});
 		
 		$runLogDiv.click(function() {
-//			$homeDiv.detach();
-			console.debug("Show Run Log View");
+			that.hide();
+			p_runLogView.show(that);
 		});
 		
 		$testLogDiv.click(function() {
-//			$homeDiv.detach();
+//			that.hide();
 			console.debug("Show Test Log View");
 		});
 		
@@ -74,7 +76,7 @@ function Home(p_configView) {
 		
 		var $img_topo = $("<img id='showView' src='ui/common/res/images/topology.png'>");
 		var $img_run = $("<img id='showView' src='ui/common/res/images/topology1.png'>"); 
-		var $img_test = $("<img id='showView' src='ui/common/res/images/topology1.png'>");
+		var $img_test = $("<img id='showView' src='ui/common/res/images/topology.png'>");
 		imgs.push($img_topo);
 		imgs.push($img_run);
 		imgs.push($img_test);

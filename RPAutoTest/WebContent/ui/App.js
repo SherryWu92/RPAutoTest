@@ -3,17 +3,14 @@
  */
 includeJS("ui/common/view/Home.js");
 includeJS("ui/config/view/ConfigureView.js");
+includeJS("ui/runLog/view/RunLogView.js");
 
 window.onload = function () {
 	var configureView = new ConfigureView();
-	var homeView = new Home(configureView);
-	configureView.show();
+	var runLogView = new RunLogView();
 	
-	$("#home").click(function() {
-		configureView.hide();
-		homeView.show();
-	});
-	
+	var homeView = new Home(configureView, runLogView);	
+	homeView.show();	
 };
 
 
