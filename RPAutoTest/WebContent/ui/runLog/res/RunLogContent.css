@@ -1,0 +1,78 @@
+@CHARSET "UTF-8";
+body {
+	background: #E9E9E9;
+	font: 11px/1.33 Verdana, sans-serif;
+}
+body > div {
+	margin: 10px auto 0 auto;
+	border-radius: 10px;
+}
+
+.runLogContent {
+	position: relative;
+	width: 80%;
+	height: 700px;
+	background-color: #bbbbbb;
+	color: white;			
+}
+
+.runLogContent a {
+	text-decoration: none;
+	color: #298cad;
+}
+
+.runLogContent ul {
+	list-style: none;			
+}
+
+.runLogContent li {
+	float: right;
+}
+
+#menu a {
+	display: block;
+	text-align: center;
+	padding: 3px 15px 7px;			
+	color: white;
+	background: #555555;
+	border-left: 1px solid #333;
+	white-space: nowrap;
+}
+
+#menu a:hover {
+	background: #999999;
+	color: #000000;
+}
+
+.runLogContent .mainView {
+	position: relative;
+	background: #333333;
+	height: 88%;
+	top: 6%;	
+	width: 97%;
+	margin: auto;		
+}
+
+.mainView #logsView {
+	position: relative;
+	top: 5%;
+	width: 96%;
+	height: 90%;
+	background: #cccccc;
+	border-radius: 6px;
+	margin: auto;
+} 
+
+.mainView #logsView table {
+	position: relative;
+	top: 1%;
+	left: 2%;
+	width: 96%;						
+	font-size: 10px;
+	color: #333;
+	border-color: white;
+}
+
+.mainView #logsView td {
+	text-align: center;
+}
