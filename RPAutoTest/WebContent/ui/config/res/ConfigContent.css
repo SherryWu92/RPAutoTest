@@ -1,0 +1,136 @@
+@CHARSET "UTF-8";
+body {
+	background: #E9E9E9;
+	font: 11px/1.33 Verdana, sans-serif;
+}
+
+body > div {
+	border-radius: 10px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.configContent {
+	position: relative;
+	width: 80%;
+	height: 700px;
+	background-color: #bbbbbb;
+	color: white;	
+	margin: auto;		
+}
+
+.configContent ul {
+	list-style: none;			
+}
+
+.configContent li {
+	float: right;
+}
+
+#menu a {
+	display: block;
+	text-align: center;
+	padding: 3px 15px 7px;			
+	color: white;
+	background: #555555;
+	border-left: 1px solid #333;
+	white-space: nowrap;
+}
+
+#menu a:hover {
+	background: #999999;
+	color: #000000;
+}
+
+.configContent .mainView {
+	position: absolute;
+	background: #333333;
+	height: 88%;
+	left: 2%;
+	top: 6%;	
+	width: 96%;
+}
+
+.mainView #machines {
+	position: relative;
+	float: left;
+	left: 2%;
+	top: 5%;
+	width: 12%;
+	height: 90%;
+	/*border: 1px dashed #666666;*/
+	background: #cccccc;
+	border-radius: 6px;
+} 
+
+.mainView #machines	> div {
+	position: relative;
+	padding-top: 10px;
+	width:72px;
+	margin: auto;
+}
+
+.mainView #machines	img{
+	position: relative;
+	opacity: 0.9;
+	width:72px;
+	height:72px
+}
+
+.mainView #machines	img:hover {
+	opacity: 1;
+}
+
+.mainView #canvas {
+	position: relative;
+	left: 15%;
+	top: 5%;
+	width: 83%;
+	height: 90%;
+	background: #cccccc;
+	border-radius: 6px;
+}
+	
+.mainView #xmlArea {
+	display: block;
+	position: relative;
+	top: 5%;
+	width: 96%;
+	height: 90%;
+	margin:auto;
+	background: #cccccc;
+	border-radius: 6px;	
+}	
+		
+.configContent .tabs {
+	position: absolute;
+	left: 3%;
+	top: 94%;	
+	width: 95%;
+}
+
+.configContent .tabs a{
+	display: inline-block;
+	color: #333333;		
+	text-align: center;
+	padding: 3px 15px 3px;	
+	font-size: 14px;
+	line-height: 27px;	
+	width: 100px;	
+}
+
+.configContent .tabs a.sel{
+	background: #333333;	
+	color: white;		
+}
+
+.configContent .tabs a.sel:hover {
+	color: white;
+}
+
+.configContent .tabs a:hover {
+	color: black;
+	border: 1px dotted #333333;
+}
