@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+.test{
+	position: absolute;
+	left: 500px;
+	top: 188px;
+	width: 500px;			
+	height: 400px;
+	color: white;
+	font-size: 18px;
+	background: #bbbbbb;
+	border-radius: 10px;
+	z-index: 2;
+}
+
+.test label {
+	display: inline-block;
+	margin: 2% 0 0 5%;	
+	font-size: 14px;
+	color:black;		
+}
+
+.test .cmds {
+	position: relative;
+	width: 90%;
+	margin: auto;
+}
+
+.test .cmds .cmd {
+	margin: 1% 2% 0 2%;
+}
+
+.test .cmds input {
+	display: inline-block;
+	float: left;	
+	width: 85%;
+	margin: 1% 2% 0 2%;
+}
+
+.test .cmds img {			
+	width: 20px;
+	height: 20px;
+	margin: 1% 2% 0 0;
+}
+
+.test .resultView {
+	position: relative;
+	width: 90%;
+	height: 50%;
+	margin: 1% auto;
+	overflow: auto;
+	color: #CCC;
+	background: #444;
+	border-radius: 6px;
+	font-size: 14px;
+}
+
+.test .operation {
+	position: absolute;
+	left: 10%;
+	bottom: 6%;
+	width: 80%;
+	text-align: center;
+}
+
+.test .operation a {
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 3px 15px 3px;
+	font-size: 14px;
+	line-height: 27px;
+	width: 80px;
+	background: #298cad;
+	border-radius: 5px;
+	margin-left: 10px;
+}
+
+.test .operation a:hover {
+	color: #298cad;
+	background: white;
+	border: 1px solid #298cad;
+}

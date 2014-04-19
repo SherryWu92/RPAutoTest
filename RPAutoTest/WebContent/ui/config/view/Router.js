@@ -1,5 +1,7 @@
 includeCSS("ui/config/res/Device.css");
 includeJS("ui/config/view/SettingDialog.js");
+includeJS("ui/config/view/TestDialog.js");
+includeJS("ui/config/view/SettingTabView.js");
 
 function Router(p_id, p_left, p_top) {
 	var $router = null;
@@ -24,7 +26,9 @@ function Router(p_id, p_left, p_top) {
 			getAllConnections(id);
 			var body = $('body');
 			var $settingDialog = new SettingDialog(connInfo);
-			body.append($settingDialog);
+			var $testDialog = new TestDialog();
+			var $settingTabView = new SettingTabView($settingDialog, $testDialog);
+			body.append($settingTabView);
 		});
 	}		
 		

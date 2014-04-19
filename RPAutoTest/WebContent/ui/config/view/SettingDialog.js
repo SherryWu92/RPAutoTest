@@ -30,12 +30,12 @@ function SettingDialog(p_connInfo) {
 	var $ripTable = null;
 	var $ospfTable = null;
 	var $controlInt = null; 
-	var $maskingDiv = null;
+//	var $maskingDiv = null;
 	init();
 	
 	function init() {
-		createMask();
-		createTitle();
+//		createMask();
+//		createTitle();
 		createSelect();
 		createOSPFTable();
 		createRIPTable();
@@ -213,12 +213,14 @@ function SettingDialog(p_connInfo) {
 			localStorage.setItem(connInfo.id, JSON.stringify(connInfo));
 			
 			$settingDialog.remove();
-			$maskingDiv.remove();
+			$("#masking").remove();	
+			$("#titleTabs").remove();
 		});
 		
 		$cancel.click(function(){
 			$settingDialog.remove();
-			$maskingDiv.remove();
+			$("#masking").remove();
+			$("#titleTabs").remove();
 		});
 		
 		$delete.click(function(){
@@ -228,23 +230,24 @@ function SettingDialog(p_connInfo) {
 			jsPlumb.removeAllEndpoints(id);
 			$("#" + id).remove();
 			$settingDialog.remove();
-			$maskingDiv.remove();			
+			$("#masking").remove();	
+			$("#titleTabs").remove();
 		});
 	}
 	
-	function createMask() {
-        $maskingDiv = $("<div></div>");
-        $maskingDiv.css({
-            "position" : "absolute",
-            "left" : 0,
-            "top" : 0,
-            "width" : "100%",
-            "height" : "100%", 
-            "background" : "rgba(0, 0, 0, 0.7)",
-            "z-index" : 1
-        });
-        $('body').append($maskingDiv);
-	}
+//	function createMask() {
+//        $maskingDiv = $("<div></div>");
+//        $maskingDiv.css({
+//            "position" : "absolute",
+//            "left" : 0,
+//            "top" : 0,
+//            "width" : "100%",
+//            "height" : "100%", 
+//            "background" : "rgba(0, 0, 0, 0.7)",
+//            "z-index" : 1
+//        });
+//        $('body').append($maskingDiv);
+//	}
 	
 	return $settingDialog;
 }

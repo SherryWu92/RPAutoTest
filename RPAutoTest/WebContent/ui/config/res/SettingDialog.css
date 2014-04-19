@@ -15,13 +15,14 @@ a {
 .setting {
 	position: absolute;
 	left: 500px;
-	top: 150px;
+	top: 188px;
 	width: 500px;			
 	height: 400px;
 	color: white;
 	font-size: 18px;	
 	background: #bbbbbb;	
 	z-index: 2;	
+	border-radius: 10px;
 }
 .setting > span {
 	background-color: #298cad;
