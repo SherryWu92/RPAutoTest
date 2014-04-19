@@ -58,7 +58,7 @@ a {
 	float: left;
 	left: 2%;
 	top: 5%;
-	width: 12%;
+	width: 14%;
 	height: 90%;
 	/*border: 1px dashed #666666;*/
 	background: #cccccc;
@@ -85,9 +85,9 @@ a {
 
 .mainView #canvas {
 	position: relative;
-	left: 15%;
+	left: 17%;
 	top: 5%;
-	width: 83%;
+	width: 81%;
 	height: 90%;
 	background: #cccccc;
 	border-radius: 6px;

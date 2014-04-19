@@ -1,6 +1,7 @@
 includeCSS("ui/config/res/ConfigContent.css");
 
 includeJS("ui/common/service/ServiceClient.js");
+includeJS("ui/common/view/FileHandler.js");
 includeJS("ui/common/view/LogDialog.js");
 includeJS("ui/config/view/Router.js");
 includeJS("ui/config/view/Switch.js");
@@ -63,6 +64,11 @@ function ConfigContent() {
 		$configureLi.click(function() {
 			var protocalInfo = getProtocalInfo();			
 			console.debug(protocalInfo);
+//			var runLog = [];
+//			runLog.push({id:"R1", log: "#Router1"});
+//			runLog.push({id:"R2", log: "#Router2"});
+//			runLog.push({id:"R3", log: "#Router3"});
+//			localStorage.setItem("RunLog", JSON.stringify(runLog));
 			ServiceClient.invoke("configure/protocal", protocalInfo).done(function(p_results){
 				console.debug(p_results);		
 				var body = $('body');
@@ -171,35 +177,6 @@ function ConfigContent() {
 		$canvas.empty();
 		localStorage.clear();		
 	}
-	
-	function saveFile(value, type, name) {
-	    var blob;
-	    if (typeof window.Blob == "function") {
-	        blob = new Blob([value], {type: type});
-	    } else {
-	        var BlobBuilder = window.BlobBuilder || window.MozBlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder;
-	        var bb = new BlobBuilder();
-	        bb.append(value);
-	        blob = bb.getBlob(type);
-	    }
-	    var URL = window.URL || window.webkitURL;
-	    var bloburl = URL.createObjectURL(blob);
-	    var anchor = document.createElement("a");
-	    if ('download' in anchor) {
-	        anchor.style.visibility = "hidden";
-	        anchor.href = bloburl;
-	        anchor.download = name;
-	        document.body.appendChild(anchor);
-	        var evt = document.createEvent("MouseEvents");
-	        evt.initEvent("click", true, true);
-	        anchor.dispatchEvent(evt);
-	        document.body.removeChild(anchor);
-	    } else if (navigator.msSaveBlob) {
-	        navigator.msSaveBlob(blob, name);
-	    } else {
-	        location.href = bloburl;
-	    }
-	}  
 	
 	function getProtocalInfo() {
 		var protocalInfo = {};

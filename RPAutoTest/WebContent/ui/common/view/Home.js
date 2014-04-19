@@ -57,7 +57,6 @@ function Home(p_configView, p_runLogView) {
 		$configDiv.mouseover(function() {
 			$("#showView").remove();
 			$showViewDiv.append(imgs[0]);			
-			console.debug("mouseover");
 		});
 		
 		$runLogDiv.mouseover(function() {
