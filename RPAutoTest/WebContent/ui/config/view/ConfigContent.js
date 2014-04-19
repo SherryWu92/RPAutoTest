@@ -70,7 +70,13 @@ function ConfigContent() {
 //			runLog.push({id:"R3", log: "#Router3"});
 //			localStorage.setItem("RunLog", JSON.stringify(runLog));
 			ServiceClient.invoke("configure/protocal", protocalInfo).done(function(p_results){
-				console.debug(p_results);		
+				var runLog = p_results;		
+				localStorage.setItem("RunLog", JSON.stringify(runLog));
+				var logStr = "";
+				for(var i in runLog) {
+					logStr += runLog[i].id + "Log :\n";
+					logStr += runLog[i].log + "\n";
+				}
 				var body = $('body');
 				var $logDialog = new LogDialog("Run Log", p_results);
 				body.append($logDialog);
