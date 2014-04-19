@@ -10,12 +10,14 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import net.sf.json.JSONArray;
+
 import cn.edu.nju.software.rp.model.Protocal;
 import cn.edu.nju.software.rp.xmlmodel.TestCases;
 
 public class ConfigController {
 
-	public boolean config(Protocal p){
+	public JSONArray config(Protocal p){
 		DeviceMap deviceMap = new DeviceMap();
 		deviceMap.setMap(p);
 		XMLDataMapping xmlMap = new XMLDataMapping();
@@ -23,12 +25,13 @@ public class ConfigController {
 		try {
 			this.marshal(cases, "c:\\test\\test.xml");
 			DeviceMediator dm = new DeviceMediator();
-			dm.config("c:\\test\\test.xml");
+			JSONArray runlog = dm.config("c:\\test\\test.xml");
+			return runlog;
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return true;
+		return null;
 	}
 	
 	public String getXMLString(Protocal p){

@@ -23,11 +23,14 @@ class Config(object):
         
     def config_router(self, host, password, commands):
         tn = self._enable_router(host, password)
-        for command in commands:
-            tn.write(command+'\n') 
-            tn.read_until('#')       
+        runlog = ''
+        for command in commands:   
+            data = tn.read_until('#')
+            runlog += data        
+            tn.write(command.encode('ascii')+"\r\n".encode('ascii'))
+        runlog += tn.read_until('#')                                  
         tn.close()
-        
+        return runlog
         
 #test
 #conf = Config()
@@ -35,7 +38,7 @@ class Config(object):
 #commands_r2 = ["conf t","int s1/0","ip add 30.0.0.2 255.0.0.0","no sh","int s1/2","ip add 31.0.0.2 255.0.0.0","no sh","router rip","net 31.0.0.0","net 30.0.0.0","exit","exit"]
 #commands_r3 = ["conf t","int s1/0","ip add 31.0.0.1 255.0.0.0","no sh","router rip","net 31.0.0.0","exit","exit"]
 
-#conf.config_router("12.0.0.2", "1234", commands_r1)
+#print conf.config_router("12.0.0.2", "1234", commands_r1)
 #conf.config_router("12.0.0.3", "1234", commands_r2)
 #conf.config_router("12.0.0.4", "1234", commands_r3)
         

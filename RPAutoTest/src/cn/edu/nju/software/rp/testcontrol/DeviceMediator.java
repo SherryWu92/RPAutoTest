@@ -9,6 +9,9 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.stream.StreamSource;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.python.core.PyList;
 import org.python.core.PyObject;
 import org.python.core.PyString;
@@ -53,7 +56,8 @@ public class DeviceMediator {
 	    return t;
 	}
 	
-	public void config(String xmlpath){
+	public JSONArray config(String xmlpath){
+		JSONArray runlog = new JSONArray();
 		PyObject pyconfig = this.getPythonClassInstance("C:\\Users\\njusoftware\\git\\RPAutoTest\\AutoLib\\config.py", "Config");
 		try {
 			TestCases t = this.unmarshal(new File(xmlpath));
@@ -69,14 +73,19 @@ public class DeviceMediator {
 					paras[0] = new PyString(info.getIP());
 					paras[1] = new PyString(info.getPassword());
 					paras[2] = new PyList(commands);
-					pyconfig.invoke("config_router", paras);
+					JSONObject a_log = new JSONObject();
+					a_log.put("id", id);
+					PyString equip_log = (PyString) pyconfig.invoke("config_router", paras);
+					a_log.put("log", equip_log.toString());
+					runlog.add(a_log);
 				}
 			}
+			return runlog;
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-		
+		return null;
 	}
 	
 	public static void main(String[] args){
