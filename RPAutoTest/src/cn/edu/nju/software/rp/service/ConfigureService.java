@@ -7,6 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import cn.edu.nju.software.rp.model.Protocal;
@@ -32,10 +33,10 @@ public class ConfigureService {
 		JSONObject response = new JSONObject();
 		Protocal protocal = jsonDataMapping.mapToProtocal(protocalInfo);
 		if(protocal != null) {
-			configureController.config(protocal);
+			JSONArray result=configureController.config(protocal);
 			System.out.println(JSONObject.fromObject(protocal));
 			response.put("errCode", 0);
-			response.put("result", "Success");
+			response.put("result", result);
 		}
 		else {
 			response.put("errCode", 1);
