@@ -20,14 +20,12 @@ public class ConfigController {
 	public JSONArray config(Protocal p){
 		DeviceMap deviceMap = DeviceMap.getInstance();
 		deviceMap.setMap(p);
-		System.out.println("*********");
-		System.out.println(deviceMap.getMap().get("R2").getIP());
 		XMLDataMapping xmlMap = new XMLDataMapping();
 		TestCases cases = xmlMap.mapping(p);
 		try {
-			this.marshal(cases, "c:\\test\\test.xml");
+			this.marshal(cases, GlobalVariables.TEMP_XML_PATH_FOR_CONFIG);
 			DeviceMediator dm = new DeviceMediator();
-			JSONArray runlog = dm.config("c:\\test\\test.xml");
+			JSONArray runlog = dm.config(GlobalVariables.TEMP_XML_PATH_FOR_CONFIG);
 			return runlog;
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
@@ -39,7 +37,7 @@ public class ConfigController {
 	public String getXMLString(Protocal p){
 		XMLDataMapping xmlMap = new XMLDataMapping();
 		TestCases cases = xmlMap.mapping(p);
-		String tempFilePath = "c:\\test\\temp.xml";
+		String tempFilePath = GlobalVariables.TEMP_XML_PATH_FOR_EXPORT;
 		try{
 			this.marshal(cases, tempFilePath);
 		}catch (JAXBException e){
@@ -81,8 +79,7 @@ public class ConfigController {
 	    Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 	    
 	    jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-	    
-	    jaxbMarshaller.marshal(root, System.out);
+//	    jaxbMarshaller.marshal(root, System.out);
 	    jaxbMarshaller.marshal(root, new File(saveFilePath));
 	}
 }

@@ -62,7 +62,7 @@ public class DeviceMediator {
 	
 	public JSONArray config(String xmlpath){
 		JSONArray runlog = new JSONArray();
-		PyObject pyconfig = this.getPythonClassInstance("C:\\Users\\njusoftware\\Desktop\\RPAutoTest\\trunk\\AutoLib\\config.py", "Config");
+		PyObject pyconfig = this.getPythonClassInstance(GlobalVariables.PYCONFIG_PATH, "Config");
 		try {
 			TestCases t = this.unmarshal(new File(xmlpath));
 			ArrayList<TestCase> cases = t.getTestcase();
@@ -95,32 +95,32 @@ public class DeviceMediator {
 	}
 	
 	public static void main(String[] args){
-		DeviceMap map = DeviceMap.getInstance();
-		XMLDataMapping mapper = new XMLDataMapping();
-		DeviceMediator dm = new DeviceMediator();
-		BufferedReader reader;
-		StringBuilder  stringBuilder = null;
-		Protocal p = null;
-		try {
-			reader = new BufferedReader( new FileReader("c:\\test\\test.xml"));
-			String         line = null;
-		    stringBuilder = new StringBuilder();
-		    String         ls = System.getProperty("line.separator");
-		    while( ( line = reader.readLine() ) != null ) {
-		        stringBuilder.append( line );
-		        stringBuilder.append( ls );
-		    } 
-		}catch (IOException e) {
-			e.printStackTrace();
-		}	    
-		try {
-			TestCases t = dm.unmarshal(stringBuilder.toString());
-			p = mapper.mapping(t);
-
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-		map.setMap(p);
-		dm.config("c:\\test\\test.xml");
+//		DeviceMap map = DeviceMap.getInstance();
+//		XMLDataMapping mapper = new XMLDataMapping();
+//		DeviceMediator dm = new DeviceMediator();
+//		BufferedReader reader;
+//		StringBuilder  stringBuilder = null;
+//		Protocal p = null;
+//		try {
+//			reader = new BufferedReader( new FileReader("c:\\test\\test.xml"));
+//			String         line = null;
+//		    stringBuilder = new StringBuilder();
+//		    String         ls = System.getProperty("line.separator");
+//		    while( ( line = reader.readLine() ) != null ) {
+//		        stringBuilder.append( line );
+//		        stringBuilder.append( ls );
+//		    } 
+//		}catch (IOException e) {
+//			e.printStackTrace();
+//		}	    
+//		try {
+//			TestCases t = dm.unmarshal(stringBuilder.toString());
+//			p = mapper.mapping(t);
+//
+//		} catch (JAXBException e) {
+//			e.printStackTrace();
+//		}
+//		map.setMap(p);
+//		dm.config("c:\\test\\test.xml");
 	}
 }
