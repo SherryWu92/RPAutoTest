@@ -1,6 +1,9 @@
 package cn.edu.nju.software.rp.testcontrol;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 
@@ -17,6 +20,7 @@ import org.python.core.PyObject;
 import org.python.core.PyString;
 import org.python.util.PythonInterpreter;
 
+import cn.edu.nju.software.rp.model.Protocal;
 import cn.edu.nju.software.rp.xmlmodel.*;
 
 public class DeviceMediator {
@@ -26,13 +30,13 @@ public class DeviceMediator {
 	public PythonInterpreter getPythonInterpreter(){
 		if (this.pythonInterp == null){
 			this.pythonInterp = new PythonInterpreter();
-		    return this.pythonInterp;
-		}else return this.pythonInterp;
+		}	
+	    return this.pythonInterp;
 	}
 	
 	public PyObject getPythonClassInstance(String pyfilePath, String classname){
 		PythonInterpreter interp = getPythonInterpreter();
-		interp.execfile(pyfilePath);	    
+		interp.execfile(pyfilePath);
 	    String className = classname;
 	    String instanceName = className.toLowerCase();
 	    String objectDef = "=" + className + "()";
@@ -58,11 +62,11 @@ public class DeviceMediator {
 	
 	public JSONArray config(String xmlpath){
 		JSONArray runlog = new JSONArray();
-		PyObject pyconfig = this.getPythonClassInstance("C:\\Users\\njusoftware\\git\\RPAutoTest\\AutoLib\\config.py", "Config");
+		PyObject pyconfig = this.getPythonClassInstance("C:\\Users\\njusoftware\\Desktop\\RPAutoTest\\trunk\\AutoLib\\config.py", "Config");
 		try {
 			TestCases t = this.unmarshal(new File(xmlpath));
 			ArrayList<TestCase> cases = t.getTestcase();
-			DeviceMap deviceMap = new DeviceMap();
+			DeviceMap deviceMap = DeviceMap.getInstance();
 			for(int i_case=0; i_case < cases.size(); i_case++){
 				ArrayList<Equipment> equips = cases.get(i_case).getEquipments().getEquipment();
 				for(int i_equip=0; i_equip < equips.size(); i_equip++){
@@ -75,8 +79,10 @@ public class DeviceMediator {
 					paras[2] = new PyList(commands);
 					JSONObject a_log = new JSONObject();
 					a_log.put("id", id);
-					PyString equip_log = (PyString) pyconfig.invoke("config_router", paras);
-					a_log.put("log", equip_log.toString());
+					PyObject equip_log = pyconfig.invoke("config_router", paras);
+					String log = (String) equip_log.__tojava__(String.class);
+					System.out.println("******"+log);
+					a_log.put("log", log);
 					runlog.add(a_log);
 				}
 			}
@@ -89,7 +95,32 @@ public class DeviceMediator {
 	}
 	
 	public static void main(String[] args){
-		DeviceMediator m = new DeviceMediator();
-		m.config("c:\\test\\testcases.xml");
+		DeviceMap map = DeviceMap.getInstance();
+		XMLDataMapping mapper = new XMLDataMapping();
+		DeviceMediator dm = new DeviceMediator();
+		BufferedReader reader;
+		StringBuilder  stringBuilder = null;
+		Protocal p = null;
+		try {
+			reader = new BufferedReader( new FileReader("c:\\test\\test.xml"));
+			String         line = null;
+		    stringBuilder = new StringBuilder();
+		    String         ls = System.getProperty("line.separator");
+		    while( ( line = reader.readLine() ) != null ) {
+		        stringBuilder.append( line );
+		        stringBuilder.append( ls );
+		    } 
+		}catch (IOException e) {
+			e.printStackTrace();
+		}	    
+		try {
+			TestCases t = dm.unmarshal(stringBuilder.toString());
+			p = mapper.mapping(t);
+
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+		map.setMap(p);
+		dm.config("c:\\test\\test.xml");
 	}
 }

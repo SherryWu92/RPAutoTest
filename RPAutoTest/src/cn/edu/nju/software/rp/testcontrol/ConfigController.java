@@ -18,8 +18,10 @@ import cn.edu.nju.software.rp.xmlmodel.TestCases;
 public class ConfigController {
 
 	public JSONArray config(Protocal p){
-		DeviceMap deviceMap = new DeviceMap();
+		DeviceMap deviceMap = DeviceMap.getInstance();
 		deviceMap.setMap(p);
+		System.out.println("*********");
+		System.out.println(deviceMap.getMap().get("R2").getIP());
 		XMLDataMapping xmlMap = new XMLDataMapping();
 		TestCases cases = xmlMap.mapping(p);
 		try {

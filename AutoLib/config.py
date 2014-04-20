@@ -7,6 +7,7 @@ Created on 2014-4-8
 import sys
 import telnetlib
 
+
 class Config(object):
     '''
     classdocs
@@ -22,8 +23,8 @@ class Config(object):
         return tn
         
     def config_router(self, host, password, commands):
+        runlog = ''        
         tn = self._enable_router(host, password)
-        runlog = ''
         for command in commands:   
             data = tn.read_until('#')
             runlog += data        

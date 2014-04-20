@@ -10,9 +10,18 @@ import cn.edu.nju.software.rp.model.Switch;
 public class DeviceMap {
 	// Map<DeviceId, DeviceInfo>
 	// DeviceInfo class has Phy IP and password
-	
+	private static DeviceMap deviceMap;
 	HashMap<String, DeviceInfo> map = new HashMap<String, DeviceInfo>();
 	
+	private DeviceMap(){}
+	
+	public static DeviceMap getInstance(){
+		if (deviceMap == null){
+			deviceMap = new DeviceMap();
+		}
+		return deviceMap;
+	}
+
 	public void setMap(Protocal p){
 		ArrayList<Router> routers = p.getRouters();
 		ArrayList<Switch> switches = p.getSwitches();
