@@ -51,7 +51,7 @@ function RunLogContent() {
 		for(var i in runLog) {
 			var deviceLog = runLog[i];
 			var id = deviceLog.id;
-			var $navLi = $("<li><img src='ui/runLog/res/images/file.png'><a href='#' class='' id=" + runLog[i].id + ">Device_" + runLog[i].id + ".log</a></li>");
+			var $navLi = $("<li><img src='ui/runLog/res/images/file.png'><a href='#' class='' id=" + id + ">Device_" + id + ".log</a></li>");
 			$navUl.append($navLi);
 			runLogArr[id] = deviceLog.log;
 			

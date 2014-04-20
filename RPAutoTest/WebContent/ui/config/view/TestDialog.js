@@ -164,7 +164,7 @@ function TestDialog(p_connInfo) {
 					testLog = {};
 				}
 				testLog[id] = logStr;		
-				localStorage.setItem("RunLog", JSON.stringify(testLog));
+				localStorage.setItem("TestLog", JSON.stringify(testLog));
 				
 				$resultView.html(logStr);
 			});			

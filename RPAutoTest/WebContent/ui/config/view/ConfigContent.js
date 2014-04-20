@@ -134,6 +134,7 @@ function ConfigContent() {
 			$canvas.append($router);
 			addEndPoints(id);
 			
+			routers[i].testCmds = [];
 			localStorage.setItem(id, JSON.stringify(routers[i]));
 		}
 		var switches = connInfo.switches;
@@ -146,6 +147,7 @@ function ConfigContent() {
 			$canvas.append($switch);
 			addEndPoints(id);
 			
+			switches[i].testCmds = [];
 			localStorage.setItem(id, switches[i]);
 		}
 		
