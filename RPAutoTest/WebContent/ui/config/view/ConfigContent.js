@@ -30,11 +30,9 @@ function ConfigContent() {
 		var $importLi = $("<li><a href='#' id='menu-import' class=''>Import</a></li>");
 		var $saveLi = $("<li><a href='#' id='menu-save' class=''>Save</a></li>");
 		var $configureLi = $("<li><a href='#' id='menu-configure' class=''>Configure</a></li>");
-		var $testLi = $("<li><a href='#' id='menu-test' class=''>Test</a></li>");
 		var $clearLi = $("<li><a href='#' id='menu-clear' class=''>Clear</a></li>");
 		
 		$menuUl.append($clearLi);
-		$menuUl.append($testLi);
 		$menuUl.append($configureLi);
 		$menuUl.append($saveLi);
 		$menuUl.append($importLi);
@@ -69,9 +67,10 @@ function ConfigContent() {
 				localStorage.setItem("RunLog", JSON.stringify(runLog));
 				var logStr = "";
 				for(var i in runLog) {
-					logStr += runLog[i].id + "Log :\n";
-					logStr += runLog[i].log + "\n";
+					logStr += runLog[i].id + "Log :<br>";
+					logStr += runLog[i].log + "<br>";
 				}
+				logStr = logStr.replace(/\/n/g,"<br>");
 				var body = $('body');
 				var $logDialog = new LogDialog("Run Log", logStr);
 				body.append($logDialog);

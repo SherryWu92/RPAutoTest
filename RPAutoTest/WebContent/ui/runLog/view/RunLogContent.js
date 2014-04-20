@@ -60,8 +60,9 @@ function RunLogContent() {
 					$("#" + selId).removeClass("sel");
 				}
 				selId = $(this).find("a").attr("id");
-				$("#" + selId).addClass("sel");				
-				$logsView.text(runLogArr[selId]);
+				$("#" + selId).addClass("sel");			
+				var logStr = runLogArr[selId].replace(/\/n/g,"<br>");
+				$logsView.html(logStr);
 			});
 		}		
 		$navView.append($navUl);

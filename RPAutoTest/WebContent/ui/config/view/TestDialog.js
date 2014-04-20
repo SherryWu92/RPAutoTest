@@ -1,8 +1,11 @@
 includeCSS("ui/config/res/TestDialog.css");
 
+includeJS("ui/common/service/ServiceClient.js");
+
 function TestDialog(p_connInfo) {
 	var $testDialog = $('<div class="test"></div>');
 	var $cmdsDiv = $('<div class="cmds"></div>');
+	var $resultView = null;
 	
 	init();
 	
@@ -118,7 +121,7 @@ function TestDialog(p_connInfo) {
 	}
 	
 	function createResultView() {
-		var $resultView = $('<div class="resultView">Show ip int</div>');
+		$resultView = $('<div class="resultView"></div>');
 		$testDialog.append($resultView);
 	}
 	
@@ -143,12 +146,29 @@ function TestDialog(p_connInfo) {
 				}
 			}); 
 			
-			p_connInfo.testCmds = [];
-			p_connInfo.testCmds.push(testCmds);
+			p_connInfo.testCmds = testCmds;
 			localStorage.setItem(p_connInfo.id, JSON.stringify(p_connInfo));
-//			$testDialog.remove();
-//			$("#masking").remove();	
-//			$("#titleTabs").remove();
+			
+			var testInfo = {};
+			testInfo.id = p_connInfo.id;
+			testInfo.testCmds = testCmds;
+			
+			ServiceClient.invoke("configure/test", testInfo).done(function(p_results){
+				var a_log = p_results;
+				var id = a_log.id;
+				var logStr = a_log.log;
+				logStr = logStr.replace(/\/n/g,"<br>");
+				console.debug(logStr);
+				var testLog = JSON.parse(localStorage.getItem("TestLog"));
+				if(testLog == null) {
+					testLog = {};
+				}
+				testLog[id] = logStr;		
+				localStorage.setItem("RunLog", JSON.stringify(testLog));
+				
+				$resultView.html(logStr);
+			});			
+
 		});
 		
 		$close.click(function(){

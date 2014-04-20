@@ -1,6 +1,7 @@
 includeCSS("ui/common/res/Home.css");
 
 includeJS("ui/runLog/view/RunLogView.js");
+includeJS("ui/testLog/view/TestLogView.js");
 
 var $homeDiv = null;
 function Home(p_configView) {
@@ -53,8 +54,9 @@ function Home(p_configView) {
 		});
 		
 		$testLogDiv.click(function() {
-//			that.hide();
-			console.debug("Show Test Log View");
+			that.hide();
+			var testLogView = new TestLogView();
+			testLogView.show(that);
 		});
 		
 		$configDiv.mouseover(function() {

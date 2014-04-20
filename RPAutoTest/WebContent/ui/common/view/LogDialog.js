@@ -19,7 +19,7 @@ function LogDialog(p_title, p_logContent) {
 	
 	function createLogView() {
 		var $logView = $('<div id="logView"></div>');
-		$logView.text(p_logContent ? p_logContent : "No run log");
+		$logView.html(p_logContent ? p_logContent : "No run log");
 		$logDialog.append($logView);
 	}
 	
