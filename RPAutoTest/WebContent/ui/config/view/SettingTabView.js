@@ -1,6 +1,6 @@
 includeCSS("ui/config/res/SettingTabView.css");
 
-function SettingTabView(p_configView, p_testView) {
+function SettingTabView(p_id, p_configView, p_testView) {
 	var $SettingTabView = $('<div></div>');
 	var $maskingDiv = null;
 	init();
@@ -14,7 +14,7 @@ function SettingTabView(p_configView, p_testView) {
 	function createTabs() {
 		var $tabs = $('<div id="titleTabs"></div>');
 		
-		var $configTab = $('<a href="#" id="tab-config" class="sel">Config</a>');
+		var $configTab = $('<a href="#" id="tab-config" class="sel">' + p_id + ' Config</a>');
 		var $testTab = $('<a href="#"  id="tab-test"  class="">Test</a>');		
 		$tabs.append($configTab);
 		$tabs.append($testTab);
@@ -26,6 +26,8 @@ function SettingTabView(p_configView, p_testView) {
 			p_testView.detach();
 			$(this).addClass("sel");
 			$("#tab-test").removeClass("sel");
+			$configTab.html(p_id + " Config");
+			$testTab.html("Test");
 		});
 		
 		$testTab.click(function() {
@@ -33,6 +35,8 @@ function SettingTabView(p_configView, p_testView) {
 			p_configView.detach();
 			$(this).addClass("sel");
 			$("#tab-config").removeClass("sel");
+			$configTab.html("Config");
+			$testTab.html(p_id + " Test");
 		});
 	}
 	

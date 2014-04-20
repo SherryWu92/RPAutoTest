@@ -1,5 +1,9 @@
 includeCSS("ui/config/res/Device.css");
 
+includeJS("ui/config/view/SettingDialog.js");
+includeJS("ui/config/view/SettingTabView.js");
+includeJS("ui/config/view/TestDialog.js");
+
 function Switch(p_id, p_left, p_top) {
 	var $switch = null;
 	var connInfo = {};
@@ -23,7 +27,9 @@ function Switch(p_id, p_left, p_top) {
 			getAllConnections(id);
 			var body = $('body');
 			var $settingDialog = new SettingDialog(connInfo);
-			body.append($settingDialog);
+			var $testDialog = new TestDialog(connInfo);
+			var $settingTabView = new SettingTabView(id, $settingDialog, $testDialog);
+			body.append($settingTabView);
 		});
 	}
 	
@@ -32,7 +38,10 @@ function Switch(p_id, p_left, p_top) {
 		if(connInfo == null) {
 			connInfo = {};
 			connInfo.id = p_id;
+			connInfo.physicalIp = "";
+			connInfo.password = "";
 			connInfo.connections = [];
+			connInfo.testCmds = [];
 		}
 		else {
 			connInfo = JSON.parse(connInfo);

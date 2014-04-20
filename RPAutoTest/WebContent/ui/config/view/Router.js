@@ -1,7 +1,7 @@
 includeCSS("ui/config/res/Device.css");
 includeJS("ui/config/view/SettingDialog.js");
-includeJS("ui/config/view/TestDialog.js");
 includeJS("ui/config/view/SettingTabView.js");
+includeJS("ui/config/view/TestDialog.js");
 
 function Router(p_id, p_left, p_top) {
 	var $router = null;
@@ -26,8 +26,8 @@ function Router(p_id, p_left, p_top) {
 			getAllConnections(id);
 			var body = $('body');
 			var $settingDialog = new SettingDialog(connInfo);
-			var $testDialog = new TestDialog();
-			var $settingTabView = new SettingTabView($settingDialog, $testDialog);
+			var $testDialog = new TestDialog(connInfo);
+			var $settingTabView = new SettingTabView(id, $settingDialog, $testDialog);
 			body.append($settingTabView);
 		});
 	}		
@@ -40,6 +40,7 @@ function Router(p_id, p_left, p_top) {
 			connInfo.physicalIp = "";
 			connInfo.password = "";
 			connInfo.connections = [];
+			connInfo.testCmds = [];
 		}
 		else {
 			connInfo = JSON.parse(connInfo);

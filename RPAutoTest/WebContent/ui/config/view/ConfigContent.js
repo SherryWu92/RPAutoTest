@@ -64,11 +64,6 @@ function ConfigContent() {
 		$configureLi.click(function() {
 			var protocalInfo = getProtocalInfo();			
 			console.debug(protocalInfo);
-//			var runLog = [];
-//			runLog.push({id:"R1", log: "#Router1"});
-//			runLog.push({id:"R2", log: "#Router2"});
-//			runLog.push({id:"R3", log: "#Router3"});
-//			localStorage.setItem("RunLog", JSON.stringify(runLog));
 			ServiceClient.invoke("configure/protocal", protocalInfo).done(function(p_results){
 				var runLog = p_results;		
 				localStorage.setItem("RunLog", JSON.stringify(runLog));
@@ -78,7 +73,7 @@ function ConfigContent() {
 					logStr += runLog[i].log + "\n";
 				}
 				var body = $('body');
-				var $logDialog = new LogDialog("Run Log", p_results);
+				var $logDialog = new LogDialog("Run Log", logStr);
 				body.append($logDialog);
 			});			
 		});

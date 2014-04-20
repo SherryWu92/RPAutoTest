@@ -1,7 +1,8 @@
 includeCSS("ui/config/res/TestDialog.css");
 
-function TestDialog() {
+function TestDialog(p_connInfo) {
 	var $testDialog = $('<div class="test"></div>');
+	var $cmdsDiv = $('<div class="cmds"></div>');
 	
 	init();
 	
@@ -19,45 +20,95 @@ function TestDialog() {
 	}
 	
 	function createCmds() {
-		var $cmdsDiv = $('<div class="cmds"></div>');
+		var testCmds = p_connInfo.testCmds;
+		for(var i = 0; i < testCmds.length -1; i++) {
+			createACmd(testCmds[i]);
+		}
+		var cmd = "";
+		if(testCmds.length >= 1) {
+			cmd = testCmds[testCmds.length -1];
+		}		
+//		var $cmdsDiv = $('<div class="cmds"></div>');
 
-		var $addImg = $('<img src="ui/config/res/images/add.png">');
-		var $addHoverImg = $('<img src="ui/config/res/images/addHover.png">');
-		var $deleteImg = $('<img src="ui/config/res/images/delete.png">');
-		var $deleteHoverImg = $('<img src="ui/config/res/images/deleteHover.png">');
-		
-		var $cmdDiv1 = $('<div class="cmd"></div>');
-		var $input = $('<input type="text"/>');				
-		$cmdDiv1.append($input);
-		$cmdDiv1.append($deleteImg);
-		
+		var $addImg = $('<img class="add" src="ui/config/res/images/add.png">');
+		var $addHoverImg = $('<img class="addHover" src="ui/config/res/images/addHover.png">');
+
 		var $cmdDiv2 = $('<div class="cmd"></div>');
-		var $input = $('<input type="text"/>');				
+		var $input = $('<input class="cmdInput" type="text"/>');	
+		$input.val(cmd);
 		$cmdDiv2.append($input);
 		$cmdDiv2.append($addImg);			
 		
-		$cmdsDiv.append($cmdDiv1);
 		$cmdsDiv.append($cmdDiv2);
 		$testDialog.append($cmdsDiv);
 		
+		$addHoverImg.click(function() {
+			var $deleteImg = $('<img class="delete" src="ui/config/res/images/delete.png">');
+			var $deleteHoverImg = $('<img class="deleteHover" src="ui/config/res/images/deleteHover.png">');
+			$(this).parent().append($deleteImg);
+			$(this).detach();
+			
+			var _$cmdDiv = $('<div class="cmd"></div>');
+			var _$input = $('<input class="cmdInput" type="text"/>');		
+			_$cmdDiv.append(_$input);
+			_$cmdDiv.append($addImg);			
+			$cmdsDiv.append(_$cmdDiv);
+			
+			$testDialog.height($testDialog.height() + _$cmdDiv.height());
+			
+			$deleteImg.mouseover(function() {
+				$(this).parent().append($deleteHoverImg);
+				$(this).detach();
+			});
+			
+			$deleteHoverImg.mouseout(function() {
+				$(this).parent().append($deleteImg);
+				$(this).detach();
+			});
+			
+			$deleteHoverImg.click(function() {
+				$testDialog.height($testDialog.height() - $(this).parent().height());
+				$(this).parent().remove();				
+			});
+		});
+					
 		$addImg.mouseover(function() {
-			$addImg.detach();
-			$cmdDiv2.append($addHoverImg);	
+			$(this).parent().append($addHoverImg);
+			$(this).detach();
 		});
 		
 		$addHoverImg.mouseout(function() {
-			$addHoverImg.detach();
-			$cmdDiv2.append($addImg);	
+			$(this).parent().append($addImg);
+			$(this).detach();
 		});
+	}
+	
+	function createACmd(cmd) {
+		var $cmdDiv = $('<div class="cmd"></div>');
+		var $deleteImg = $('<img class="delete" src="ui/config/res/images/delete.png">');
+		var $deleteHoverImg = $('<img class="deleteHover" src="ui/config/res/images/deleteHover.png">');
+		
+		var $input = $('<input class="cmdInput" type="text" />');	
+		$input.val(cmd);
+		$cmdDiv.append($input);
+		$cmdDiv.append($deleteImg);			
+		$cmdsDiv.append($cmdDiv);
+ 		
+		$testDialog.height($testDialog.height() + $cmdDiv.height());
 		
 		$deleteImg.mouseover(function() {
-			$deleteImg.detach();
-			$cmdDiv1.append($deleteHoverImg);	
+			$(this).parent().append($deleteHoverImg);
+			$(this).detach();
 		});
 		
 		$deleteHoverImg.mouseout(function() {
-			$deleteHoverImg.detach();
-			$cmdDiv1.append($deleteImg);	
+			$(this).parent().append($deleteImg);
+			$(this).detach();
+		});
+		
+		$deleteHoverImg.click(function() {
+			$testDialog.height($testDialog.height() - $(this).parent().height());
+			$(this).parent().remove();				
 		});
 	}
 	
@@ -75,22 +126,32 @@ function TestDialog() {
 		var $operations = $('<div class="operation"></div>');
 		
 		var $run = $('<a href="#">Run</a>');
-		var $cancel = $('<a href="#">Cancel</a>');
+		var $close = $('<a href="#">Close</a>');
 		var $delete = $('<a href="#">Delete</a>');		
 		$operations.append($run);
-		$operations.append($cancel);
+		$operations.append($close);
 		$operations.append($delete);
 		
 		$testDialog.append($operations);
 		
 		$run.click(function(){
-			 
-			$testDialog.remove();
-			$("#masking").remove();	
-			$("#titleTabs").remove();
+			var testCmds = [];
+			$(".cmdInput").each(function() {
+				var cmd = $(this).val();
+				if(cmd != null) {
+					testCmds.push(cmd);
+				}
+			}); 
+			
+			p_connInfo.testCmds = [];
+			p_connInfo.testCmds.push(testCmds);
+			localStorage.setItem(p_connInfo.id, JSON.stringify(p_connInfo));
+//			$testDialog.remove();
+//			$("#masking").remove();	
+//			$("#titleTabs").remove();
 		});
 		
-		$cancel.click(function(){
+		$close.click(function(){
 			$testDialog.remove();
 			$("#masking").remove();
 			$("#titleTabs").remove();

@@ -45,7 +45,7 @@
 .test .resultView {
 	position: relative;
 	width: 90%;
-	height: 50%;
+	height: 200px;
 	margin: 1% auto;
 	overflow: auto;
 	color: #CCC;

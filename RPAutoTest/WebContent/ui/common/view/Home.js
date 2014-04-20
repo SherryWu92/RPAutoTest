@@ -1,7 +1,9 @@
 includeCSS("ui/common/res/Home.css");
 
+includeJS("ui/runLog/view/RunLogView.js");
+
 var $homeDiv = null;
-function Home(p_configView, p_runLogView) {
+function Home(p_configView) {
     $homeDiv = $('<div class="home"></div>');           
     var $contentDiv = null;
     var $navDiv = null;
@@ -46,7 +48,8 @@ function Home(p_configView, p_runLogView) {
 		
 		$runLogDiv.click(function() {
 			that.hide();
-			p_runLogView.show(that);
+			var runLogView = new RunLogView();
+			runLogView.show(that);
 		});
 		
 		$testLogDiv.click(function() {

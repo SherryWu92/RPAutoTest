@@ -45,13 +45,7 @@ function RunLogContent() {
 	
 	function createNavView() {
 		$navView = $("<div id='navView'></div>");
-		
-		var runLog_w = [];
-		runLog_w.push({id:"R1", log: "#Router1"});
-		runLog_w.push({id:"R2", log: "#Router2"});
-		runLog_w.push({id:"R3", log: "#Router3"});
-		localStorage.setItem("RunLog", JSON.stringify(runLog_w));
-		
+				
 		var $navUl = $("<ul></ul>");
 		var runLog = JSON.parse(localStorage.getItem("RunLog"));
 		for(var i in runLog) {
