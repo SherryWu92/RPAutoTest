@@ -1,0 +1,95 @@
+@CHARSET "UTF-8";
+body {
+	background: #E9E9E9;
+	font: 11px/1.33 Verdana, sans-serif;
+}
+body > div {
+	margin: 10px auto 0 auto;
+	border-radius: 10px;
+}
+
+.testLogContent {
+	position: relative;
+	width: 80%;
+	height: 700px;
+	background-color: #bbbbbb;
+	color: white;			
+}
+
+.testLogContent a {
+	text-decoration: none;
+	color: #298cad;
+}
+
+.testLogContent ul {
+	list-style: none;			
+}
+
+.testLogContent #menu li {
+	float: right;
+}
+
+#menu a {
+	display: block;
+	text-align: center;
+	padding: 3px 15px 7px;			
+	color: white;
+	background: #555555;
+	border-left: 1px solid #333;
+	white-space: nowrap;
+}
+
+#menu a:hover {
+	background: #999999;
+	color: #000000;
+}
+
+.testLogContent .mainView {
+	position: relative;
+	background: #333333;
+	height: 88%;
+	top: 6%;	
+	width: 97%;
+	margin: auto;		
+}
+
+.mainView #navView {
+	position: relative;
+	float: left;
+	left: 2%;
+	top: 5%;
+	width: 14%;
+	height: 90%;
+	background: #CCC;
+	border-radius: 6px;
+}
+
+#navView ul {
+	padding: 10%;
+}
+
+#navView li {
+	margin-bottom: 10px;
+}
+
+#navView li a:hover {
+	color: #065D7A;
+}
+
+#navView li a.sel {
+	font-weight: bold;
+	color: #065D7A;
+}
+
+.mainView #logsView {
+	position: relative;
+	left: 3%;
+	top: 1%;
+	width: 75%;
+	height: 79%;
+	padding: 3%;
+	overflow:auto;
+	color: #333;
+	background: #cccccc;
+	border-radius: 6px;
+} 
