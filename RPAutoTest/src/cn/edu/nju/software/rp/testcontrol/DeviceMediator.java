@@ -26,6 +26,7 @@ import cn.edu.nju.software.rp.xmlmodel.*;
 public class DeviceMediator {
 	
 	private PythonInterpreter pythonInterp;
+	private PyObject configInstance;
 	
 	public PythonInterpreter getPythonInterpreter(){
 		if (this.pythonInterp == null){
@@ -35,14 +36,17 @@ public class DeviceMediator {
 	}
 	
 	public PyObject getPythonClassInstance(String pyfilePath, String classname){
-		PythonInterpreter interp = getPythonInterpreter();
-		interp.execfile(pyfilePath);
-	    String className = classname;
-	    String instanceName = className.toLowerCase();
-	    String objectDef = "=" + className + "()";
-	    interp.exec(instanceName + objectDef);
-	    PyObject pyObject = interp.get(instanceName);
-	    return pyObject;
+		if (this.configInstance == null){
+			PythonInterpreter interp = getPythonInterpreter();
+			interp.execfile(pyfilePath);
+		    String className = classname;
+		    String instanceName = className.toLowerCase();
+		    String objectDef = "=" + className + "()";
+		    interp.exec(instanceName + objectDef);
+		    configInstance = interp.get(instanceName);
+		}
+		
+	    return this.configInstance;
 	}
 
 	public TestCases unmarshal(File xmlfile) throws JAXBException{
@@ -92,6 +96,17 @@ public class DeviceMediator {
 			e.printStackTrace();
 		}		
 		return null;
+	}
+	
+	public String test(String host, String password, ArrayList<String> testCommands){
+		PyObject pyTest = this.getPythonClassInstance(GlobalVariables.PYCONFIG_PATH, "Config");
+		PyObject[] paras = new PyObject[3];
+		paras[0] = new PyString(host);
+		paras[1] = new PyString(password);
+		paras[2] = new PyList(testCommands);
+		PyObject result = pyTest.invoke("test_router", paras);
+		String resultString = (String) result.__tojava__(String.class);
+		return resultString;
 	}
 	
 	public static void main(String[] args){

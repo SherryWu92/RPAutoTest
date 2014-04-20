@@ -32,7 +32,10 @@ class Config(object):
         runlog += tn.read_until('#')                                  
         tn.close()
         return runlog
-        
+    
+    def test_router(self, host, password, commands):
+        test_result = self.config_router(host, password, commands)
+        return test_result
 #test
 #conf = Config()
 #commands_r1 = ["conf t","int s1/1","ip add 20.0.0.1 255.0.0.0","no sh","router rip","net 20.0.0.0","exit","exit"]
