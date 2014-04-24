@@ -61,7 +61,7 @@ function RunLogContent() {
 				}
 				selId = $(this).find("a").attr("id");
 				$("#" + selId).addClass("sel");			
-				var logStr = runLogArr[selId].replace(/\/n/g,"<br>");
+				var logStr = runLogArr[selId].replace(/\/r\/n/g,"<br>");
 				$logsView.html(logStr);
 			});
 		}		

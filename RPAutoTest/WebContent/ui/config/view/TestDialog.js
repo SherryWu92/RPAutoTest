@@ -153,11 +153,11 @@ function TestDialog(p_connInfo) {
 			testInfo.id = p_connInfo.id;
 			testInfo.testCmds = testCmds;
 			
-			ServiceClient.invoke("configure/test", testInfo).done(function(p_results){
+			ServiceClient.invoke("configure/testResults", testInfo).done(function(p_results){
 				var a_log = p_results;
 				var id = a_log.id;
 				var logStr = a_log.log;
-				logStr = logStr.replace(/\/n/g,"<br>");
+				logStr = logStr.replace(/\/r\/n/g,"<br>");
 				console.debug(logStr);
 				var testLog = JSON.parse(localStorage.getItem("TestLog"));
 				if(testLog == null) {

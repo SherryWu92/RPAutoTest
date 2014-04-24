@@ -59,7 +59,7 @@ function TestLogContent() {
 				}
 				selId = $(this).find("a").attr("id");
 				$("#" + selId).addClass("sel");			
-				var logStr = testLog[selId].replace(/\/n/g,"<br>");
+				var logStr = testLog[selId].replace(/\/r\/n/g,"<br>");
 				$logsView.html(logStr);
 			});
 		}		

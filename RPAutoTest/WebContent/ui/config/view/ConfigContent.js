@@ -46,13 +46,14 @@ function ConfigContent() {
 		});
 		
 		$fileInput.change(function(evt) {
-			handleFileSelect();
+			handleFileSelect();			
+			$(this).val("");
 		});
 		
 		$saveLi.click(function() {
 			var protocalInfo = getProtocalInfo();			
 			console.debug(protocalInfo);
-			ServiceClient.invoke("configure/saveXml", protocalInfo).done(function(p_results){
+			ServiceClient.invoke("configure/xmlInfo", protocalInfo).done(function(p_results){
 				console.debug(p_results);
 				var fileContent = p_results.content;
 				saveFile(fileContent, "text/xml", "protocal.xml"); 
@@ -62,7 +63,7 @@ function ConfigContent() {
 		$configureLi.click(function() {
 			var protocalInfo = getProtocalInfo();			
 			console.debug(protocalInfo);
-			ServiceClient.invoke("configure/protocal", protocalInfo).done(function(p_results){
+			ServiceClient.invoke("configure/runResults", protocalInfo).done(function(p_results){
 				var runLog = p_results;		
 				localStorage.setItem("RunLog", JSON.stringify(runLog));
 				var logStr = "";
@@ -70,7 +71,7 @@ function ConfigContent() {
 					logStr += runLog[i].id + "Log :<br>";
 					logStr += runLog[i].log + "<br>";
 				}
-				logStr = logStr.replace(/\/n/g,"<br>");
+				logStr = logStr.replace(/\/r\/n/g,"<br>");
 				var body = $('body');
 				var $logDialog = new LogDialog("Run Log", logStr);
 				body.append($logDialog);
@@ -101,7 +102,7 @@ function ConfigContent() {
 //	    	  $("#xmlArea").text(evt.target.result);	    	  
 	    	  var xmlInfo = {};
 	    	  xmlInfo.content = evt.target.result;
-	    	  ServiceClient.invoke("configure/parseXML", xmlInfo).done(function(p_results){
+	    	  ServiceClient.invoke("configure/protocalInfo", xmlInfo).done(function(p_results){
 	    		  console.debug(p_results);
 	    		  mapToImgView(p_results);
 	    	  });
