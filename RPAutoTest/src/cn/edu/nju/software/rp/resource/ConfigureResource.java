@@ -15,12 +15,12 @@ import cn.edu.nju.software.rp.testcontrol.ConfigController;
 import cn.edu.nju.software.rp.testcontrol.JSONDataMapping;
 
 @Path("/configure")
-public class ConfigureService {
+public class ConfigureResource {
 	
 	private ConfigController configureController;
 	private JSONDataMapping jsonDataMapping;
 	
-	public ConfigureService() {
+	public ConfigureResource() {
 		configureController = new ConfigController();
 		jsonDataMapping = new JSONDataMapping();
 	}
