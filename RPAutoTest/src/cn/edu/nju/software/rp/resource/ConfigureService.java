@@ -1,4 +1,4 @@
-package cn.edu.nju.software.rp.service;
+package cn.edu.nju.software.rp.resource;
 
 
 import javax.ws.rs.Consumes;
@@ -26,7 +26,7 @@ public class ConfigureService {
 	}
 	
 	@POST
-	@Path("/protocal")
+	@Path("/runResults")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONObject configureProtocal(JSONObject protocalInfo) {
@@ -47,7 +47,7 @@ public class ConfigureService {
 	
 	
 	@POST
-	@Path("/parseXML")
+	@Path("/protocalInfo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONObject parseXML(JSONObject xmlInfo) {
@@ -64,7 +64,7 @@ public class ConfigureService {
 	}
 	
 	@POST
-	@Path("/saveXml")
+	@Path("/xmlInfo")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONObject saveXml(JSONObject protocalInfo) {
@@ -89,7 +89,7 @@ public class ConfigureService {
 	}
 	
 	@POST
-	@Path("/test")
+	@Path("/testResults")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONObject testProtocal(JSONObject testInfo) {
