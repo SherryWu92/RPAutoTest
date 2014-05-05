@@ -10,19 +10,20 @@ import javax.ws.rs.core.MediaType;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import cn.edu.nju.software.rp.factory.JSONDataMapperFactory;
 import cn.edu.nju.software.rp.model.Protocal;
 import cn.edu.nju.software.rp.testcontrol.ConfigController;
-import cn.edu.nju.software.rp.testcontrol.JSONDataMapping;
+import cn.edu.nju.software.rp.testcontrol.JSONDataMapper;
 
 @Path("/configure")
 public class ConfigureResource {
 	
 	private ConfigController configureController;
-	private JSONDataMapping jsonDataMapping;
+	private JSONDataMapper jsonDataMapping;
 	
 	public ConfigureResource() {
-		configureController = new ConfigController();
-		jsonDataMapping = new JSONDataMapping();
+		configureController = ConfigController.getInstance();
+		jsonDataMapping = JSONDataMapperFactory.getJSONDataMapper();
 	}
 	
 	@POST

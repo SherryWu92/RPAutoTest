@@ -18,10 +18,20 @@ import cn.edu.nju.software.rp.xmlmodel.TestCases;
 
 public class ConfigController {
 
+	private static ConfigController configController = new ConfigController();
+	
+	private ConfigController() {
+		
+	}
+	
+	public static ConfigController getInstance(){
+		return configController;
+	}
+	
 	public JSONArray config(Protocal p){
 		DeviceMap deviceMap = DeviceMap.getInstance();
 		deviceMap.setMap(p);
-		XMLDataMapping xmlMap = new XMLDataMapping();
+		XMLDataMapper xmlMap = new XMLDataMapper();
 		TestCases cases = xmlMap.mapping(p);
 		try {
 			this.marshal(cases, GlobalVariables.TEMP_XML_PATH_FOR_CONFIG);
@@ -51,7 +61,7 @@ public class ConfigController {
 	}
 	
 	public String getXMLString(Protocal p){
-		XMLDataMapping xmlMap = new XMLDataMapping();
+		XMLDataMapper xmlMap = new XMLDataMapper();
 		TestCases cases = xmlMap.mapping(p);
 		String tempFilePath = GlobalVariables.TEMP_XML_PATH_FOR_EXPORT;
 		try{
@@ -78,7 +88,7 @@ public class ConfigController {
 	}
 	
 	public Protocal parseXML(String xmlcontent){
-		XMLDataMapping mapper = new XMLDataMapping();
+		XMLDataMapper mapper = new XMLDataMapper();
 		DeviceMediator dm = new DeviceMediator();
 		try {
 			TestCases t = dm.unmarshal(xmlcontent);

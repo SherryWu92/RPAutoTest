@@ -5,8 +5,18 @@ import java.util.ArrayList;
 import cn.edu.nju.software.rp.model.*;
 import cn.edu.nju.software.rp.xmlmodel.*;
 
-public class XMLDataMapping {
+public class XMLDataMapper {
 
+//	private static XMLDataMapper xmlDataMapper = new XMLDataMapper();
+//	
+//	private XMLDataMapper() {
+//		
+//	}
+//	
+//	public static XMLDataMapper getInstance(){
+//		return xmlDataMapper;
+//	}
+	
 	public TestCases mapping(Protocal p){
 		ArrayList<Router> routers = p.getRouters();
 		ArrayList<Switch> switches = p.getSwitches();

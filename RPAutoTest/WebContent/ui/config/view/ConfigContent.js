@@ -2,7 +2,7 @@ includeCSS("ui/config/res/ConfigContent.css");
 
 includeJS("ui/common/service/ServiceClient.js");
 includeJS("ui/common/view/FileHandler.js");
-includeJS("ui/common/view/LogDialog.js");
+includeJS("ui/config/view/LogDialog.js");
 includeJS("ui/config/view/Router.js");
 includeJS("ui/config/view/Switch.js");
 
