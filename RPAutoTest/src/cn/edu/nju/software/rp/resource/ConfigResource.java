@@ -31,7 +31,7 @@ public class ConfigResource {
 	@Path("/runResults")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public JSONObject configureProtocol(JSONObject protocolInfo) {
+	public JSONObject configProtocol(JSONObject protocolInfo) {
 		JSONObject response = new JSONObject();
 		Protocol protocol = jsonDataMapper.mapToProtocol(protocolInfo);
 		if(protocol != null) {
