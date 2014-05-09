@@ -3,7 +3,7 @@ package cn.edu.nju.software.rp.testcontrol;
 import java.util.ArrayList;
 
 import cn.edu.nju.software.rp.model.Connection;
-import cn.edu.nju.software.rp.model.Protocal;
+import cn.edu.nju.software.rp.model.Protocol;
 import cn.edu.nju.software.rp.model.Router;
 import cn.edu.nju.software.rp.model.Switch;
 
@@ -23,11 +23,11 @@ public class JSONDataMapper {
 		return jsonDataMapper;
 	}
 	
-	public Protocal mapToProtocal(JSONObject protocalInfo) {
+	public Protocol mapToProtocol(JSONObject protocolInfo) {
 		try {
-			String type = protocalInfo.getString("type");
+			String type = protocolInfo.getString("type");
 			
-			JSONArray routerArray = protocalInfo.getJSONArray("routers");
+			JSONArray routerArray = protocolInfo.getJSONArray("routers");
 			ArrayList<Router> routers = new ArrayList<Router>();					
 			for(int i = 0; i < routerArray.size(); i++) {
                 JSONObject routerObject = routerArray.getJSONObject(i);   
@@ -51,7 +51,7 @@ public class JSONDataMapper {
 			}
 			
 			
-			JSONArray switchArray = protocalInfo.getJSONArray("switches");
+			JSONArray switchArray = protocolInfo.getJSONArray("switches");
 			ArrayList<Switch> switches = new ArrayList<Switch>();					
 			for(int i = 0; i < switchArray.size(); i++) {
                 JSONObject switchObject = switchArray.getJSONObject(i);   
@@ -75,8 +75,8 @@ public class JSONDataMapper {
                 switches.add(_switch);
 			}						
 			
-			Protocal protocal = new Protocal(type, routers, switches);
-			return protocal;
+			Protocol protocol = new Protocol(type, routers, switches);
+			return protocol;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,13 +84,13 @@ public class JSONDataMapper {
 		}
 	}
 	
-	public JSONObject mapToJSON(Protocal protocal) {
-		JSONObject protocalInfo = new JSONObject(); 
-		protocalInfo.put("type", protocal.getType());
+	public JSONObject mapToJSON(Protocol protocol) {
+		JSONObject protocolInfo = new JSONObject(); 
+		protocolInfo.put("type", protocol.getType());
 		
 		JSONArray routers = new JSONArray();		
 		
-		ArrayList<Router> routerArr = protocal.getRouters();
+		ArrayList<Router> routerArr = protocol.getRouters();
 		for(int i = 0; i < routerArr.size(); i++) {
 			Router r = routerArr.get(i);
 			JSONObject router = new JSONObject();
@@ -118,12 +118,12 @@ public class JSONDataMapper {
 			router.put("connections", connections);			
 			routers.add(router);
 		}
-		protocalInfo.put("routers", routers);
+		protocolInfo.put("routers", routers);
 		
 		
 		JSONArray switches = new JSONArray();		
 		
-		ArrayList<Switch> switchArr = protocal.getSwitches();
+		ArrayList<Switch> switchArr = protocol.getSwitches();
 		for(int i = 0; i < switchArr.size(); i++) {
 			Switch sw = switchArr.get(i);
 			JSONObject _switch = new JSONObject();
@@ -151,7 +151,7 @@ public class JSONDataMapper {
 			_switch.put("connections", connections);			
 			switches.add(_switch);
 		}
-		protocalInfo.put("switches", switches);
-		return protocalInfo;
+		protocolInfo.put("switches", switches);
+		return protocolInfo;
 	}
 }

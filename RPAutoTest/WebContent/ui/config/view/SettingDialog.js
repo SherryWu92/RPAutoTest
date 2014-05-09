@@ -6,7 +6,7 @@ function SettingDialog(p_connInfo) {
 //	if(connInfo == null) {
 //		connInfo = {
 //			id: "R1",
-//			protocal: "OSPF",
+//			protocol: "OSPF",
 //			connections: [{
 //				port: "s0/0/0",
 //				ipAddress: "192.168.0.1",
@@ -40,12 +40,12 @@ function SettingDialog(p_connInfo) {
 		createOSPFTable();
 		createRIPTable();
 		
-		var protocal = localStorage.getItem("Protocal");
-		if(protocal != null && protocal.toLowerCase() == "ospf") {
+		var protocol = localStorage.getItem("Protocol");
+		if(protocol != null && protocol.toLowerCase() == "ospf") {
 			$settingDialog.append($ospfTable);
 		}
 		else {
-			localStorage.setItem("Protocal", "rip");
+			localStorage.setItem("Protocol", "rip");
 			$settingDialog.append($ripTable);
 		}
 
@@ -61,7 +61,7 @@ function SettingDialog(p_connInfo) {
 	function createSelect() {
 		var $selectDiv = $("<div class='select'></div>");
 		
-		var $select = $("<select id='protocalType'></select>");
+		var $select = $("<select id='protocolType'></select>");
 		var $ripOption = $("<option value ='rip'>RIP</option>");
 		var $ospfOption = $("<option value ='ospf'>OSPF</option>");
 		$select.append($ripOption);
@@ -70,23 +70,23 @@ function SettingDialog(p_connInfo) {
 		$selectDiv.append($select);
 		$settingDialog.append($selectDiv);
 		
-//		if(connInfo != null && connInfo.protocal != null) {
-//			$select.val(connInfo.protocal.toLowerCase());
+//		if(connInfo != null && connInfo.protocol != null) {
+//			$select.val(connInfo.protocol.toLowerCase());
 //		}
 		
-		if(localStorage.getItem("Protocal") != null) {
-			$select.val(localStorage.getItem("Protocal"));
+		if(localStorage.getItem("Protocol") != null) {
+			$select.val(localStorage.getItem("Protocol"));
 		}
 		
 		$select.change(function() {
-			var protocal = $(this).val(); 
-			if(protocal.toLowerCase() == "ospf") {				
+			var protocol = $(this).val(); 
+			if(protocol.toLowerCase() == "ospf") {				
 				$ripTable.detach();
 				$controlInt.detach();
 				$settingDialog.append($ospfTable);
 				$settingDialog.append($controlInt);
 			}
-			else if(protocal.toLowerCase() == "rip") {
+			else if(protocol.toLowerCase() == "rip") {
 				$ospfTable.detach();
 				$controlInt.detach();
 				$settingDialog.append($ripTable);
@@ -181,10 +181,10 @@ function SettingDialog(p_connInfo) {
 		$settingDialog.append($operations);
 		
 		$ok.click(function(){
-			var protocal = $("#protocalType").val(); 
-			localStorage.setItem("Protocal", protocal);
-			if(protocal.toLowerCase() == "ospf") {
-//				connInfo.protocal = protocal;
+			var protocol = $("#protocolType").val(); 
+			localStorage.setItem("Protocol", protocol);
+			if(protocol.toLowerCase() == "ospf") {
+//				connInfo.protocol = protocol;
 				var i = 0;
 				$(".ospf tr:gt(0)").each(function() {	
 					var conn = connInfo.connections[i];
@@ -196,8 +196,8 @@ function SettingDialog(p_connInfo) {
 					i++;
 				}); 
 			}
-			else if(protocal.toLowerCase() == "rip") {
-//				connInfo.protocal = protocal;
+			else if(protocol.toLowerCase() == "rip") {
+//				connInfo.protocol = protocol;
 				var i = 0;
 				$(".rip tr:gt(0)").each(function() {	
 					var conn = connInfo.connections[i];

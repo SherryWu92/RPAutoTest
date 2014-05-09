@@ -6,18 +6,8 @@ import cn.edu.nju.software.rp.model.*;
 import cn.edu.nju.software.rp.xmlmodel.*;
 
 public class XMLDataMapper {
-
-//	private static XMLDataMapper xmlDataMapper = new XMLDataMapper();
-//	
-//	private XMLDataMapper() {
-//		
-//	}
-//	
-//	public static XMLDataMapper getInstance(){
-//		return xmlDataMapper;
-//	}
 	
-	public TestCases mapping(Protocal p){
+	public TestCases mapping(Protocol p){
 		ArrayList<Router> routers = p.getRouters();
 		ArrayList<Switch> switches = p.getSwitches();
 		ArrayList<Equipment> equips = new ArrayList<Equipment>();
@@ -41,7 +31,7 @@ public class XMLDataMapper {
 		return testcases;
 	}
 	
-	public Protocal mapping(TestCases t){
+	public Protocol mapping(TestCases t){
 		ArrayList<Equipment> equips = t.getTestcase().get(0).getEquipments().getEquipment();
 		ArrayList<Router> routers = new ArrayList<Router>();
 		ArrayList<Switch> switches = new ArrayList<Switch>();
@@ -79,14 +69,14 @@ public class XMLDataMapper {
 				}
 			}
 		}
-		Protocal p = new Protocal();
+		Protocol p = new Protocol();
 		p.setRouters(routers);
 		p.setSwitches(switches);
-		p.setType(this.parseProtocalType(equips.get(0).getCommands()));
+		p.setType(this.parseProtocolType(equips.get(0).getCommands()));
 		return p;
 	}
 	
-	private String parseProtocalType(ArrayList<String> commands){
+	private String parseProtocolType(ArrayList<String> commands){
 		for (int i_command=0; i_command < commands.size(); i_command++){
 			String command = commands.get(i_command);
 			if (command.startsWith("router")){
@@ -153,7 +143,7 @@ public class XMLDataMapper {
 		return network;
 	}
 	
-	private ArrayList<String> makeCommands(ArrayList<Connection> ports, String protocalType){
+	private ArrayList<String> makeCommands(ArrayList<Connection> ports, String protocolType){
 		ArrayList<String> commands = new ArrayList<String>();
 		ArrayList<String> networks = new ArrayList<String>();
 		commands.add("conf t");
@@ -166,7 +156,7 @@ public class XMLDataMapper {
 				networks.add(port.getNetwork());
 			}
 		}
-		if (protocalType.equals("rip")){
+		if (protocolType.equals("rip")){
 			commands.add("router rip");
 			for(int i_net=0; i_net < networks.size(); i_net++){
 				commands.add("net "+ networks.get(i_net));

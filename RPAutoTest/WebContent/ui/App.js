@@ -26,7 +26,7 @@ window.onload = function () {
 //};
 //
 //function init() {
-//	var header = new Header("Router Protocal Configuration");
+//	var header = new Header("Router Protocol Configuration");
 //	var content = new Content();
 //	var body = $("body");
 //	body.append(header);

@@ -12,7 +12,7 @@ function ConfigureView() {
 	jsPlumb.ready(function() {
 		includeJS("ui/config/view/Connector.js");
 		localStorage.clear();
-		configHeader = new Header("Router Protocal Configuration");
+		configHeader = new Header("Router Protocol Configuration");
 		configContent = new ConfigContent();
 	});
 }

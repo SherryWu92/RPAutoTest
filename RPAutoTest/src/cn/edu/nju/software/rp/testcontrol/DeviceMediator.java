@@ -20,7 +20,7 @@ import org.python.core.PyObject;
 import org.python.core.PyString;
 import org.python.util.PythonInterpreter;
 
-import cn.edu.nju.software.rp.model.Protocal;
+import cn.edu.nju.software.rp.model.Protocol;
 import cn.edu.nju.software.rp.xmlmodel.*;
 
 public class DeviceMediator {
@@ -115,7 +115,7 @@ public class DeviceMediator {
 //		DeviceMediator dm = new DeviceMediator();
 //		BufferedReader reader;
 //		StringBuilder  stringBuilder = null;
-//		Protocal p = null;
+//		Protocol p = null;
 //		try {
 //			reader = new BufferedReader( new FileReader("c:\\test\\test.xml"));
 //			String         line = null;

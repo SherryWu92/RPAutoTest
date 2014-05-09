@@ -3,7 +3,7 @@ package cn.edu.nju.software.rp.testcontrol;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import cn.edu.nju.software.rp.model.Protocal;
+import cn.edu.nju.software.rp.model.Protocol;
 import cn.edu.nju.software.rp.model.Router;
 import cn.edu.nju.software.rp.model.Switch;
 
@@ -22,7 +22,7 @@ public class DeviceMap {
 		return deviceMap;
 	}
 
-	public void setMap(Protocal p){
+	public void setMap(Protocol p){
 		ArrayList<Router> routers = p.getRouters();
 		ArrayList<Switch> switches = p.getSwitches();
 		for (int i_router=0; i_router < routers.size(); i_router++){

@@ -22,7 +22,7 @@ function Home(p_configView) {
 	}
 	
 	function createHeader() {
-		var $HeaderDiv = $('<div class="header"><span class="title">Router Protocal Auto Configuration and Test</span></div>');
+		var $HeaderDiv = $('<div class="header"><span class="title">Router Protocol Auto Configuration and Test</span></div>');
 		$homeDiv.append($HeaderDiv);
 	}
 		

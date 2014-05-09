@@ -51,19 +51,19 @@ function ConfigContent() {
 		});
 		
 		$saveLi.click(function() {
-			var protocalInfo = getProtocalInfo();			
-			console.debug(protocalInfo);
-			ServiceClient.invoke("configure/xmlInfo", protocalInfo).done(function(p_results){
+			var protocolInfo = getProtocolInfo();			
+			console.debug(protocolInfo);
+			ServiceClient.invoke("map/xmlInfo", protocolInfo).done(function(p_results){
 				console.debug(p_results);
 				var fileContent = p_results.content;
-				saveFile(fileContent, "text/xml", "protocal.xml"); 
+				saveFile(fileContent, "text/xml", "protocol.xml"); 
 			});
 		});
 		
 		$configureLi.click(function() {
-			var protocalInfo = getProtocalInfo();			
-			console.debug(protocalInfo);
-			ServiceClient.invoke("configure/runResults", protocalInfo).done(function(p_results){
+			var protocolInfo = getProtocolInfo();			
+			console.debug(protocolInfo);
+			ServiceClient.invoke("configure/runResults", protocolInfo).done(function(p_results){
 				var runLog = p_results;		
 				localStorage.setItem("RunLog", JSON.stringify(runLog));
 				var logStr = "";
@@ -102,7 +102,7 @@ function ConfigContent() {
 //	    	  $("#xmlArea").text(evt.target.result);	    	  
 	    	  var xmlInfo = {};
 	    	  xmlInfo.content = evt.target.result;
-	    	  ServiceClient.invoke("configure/protocalInfo", xmlInfo).done(function(p_results){
+	    	  ServiceClient.invoke("map/protocolInfo", xmlInfo).done(function(p_results){
 	    		  console.debug(p_results);
 	    		  mapToImgView(p_results);
 	    	  });
@@ -181,13 +181,13 @@ function ConfigContent() {
 		localStorage.clear();		
 	}
 	
-	function getProtocalInfo() {
-		var protocalInfo = {};
-		protocalInfo.type = "rip";
-		protocalInfo.routers = [];
-		protocalInfo.switches = [];
-		if(localStorage.getItem("Protocal") != null) {
-			protocalInfo.type = localStorage.getItem("Protocal");
+	function getProtocolInfo() {
+		var protocolInfo = {};
+		protocolInfo.type = "rip";
+		protocolInfo.routers = [];
+		protocolInfo.switches = [];
+		if(localStorage.getItem("Protocol") != null) {
+			protocolInfo.type = localStorage.getItem("Protocol");
 		}
 		$canvas.find(".device").each(function(){
 			var id = $(this).attr("id");
@@ -197,7 +197,7 @@ function ConfigContent() {
 					alert("Please complete the " + id + " router's info!");
 					return;
 				}
-				protocalInfo.routers.push(router);
+				protocolInfo.routers.push(router);
 			}
 			else if(id.indexOf("SW") != -1) {
 				var _switch = localStorage.getItem(id);
@@ -205,11 +205,11 @@ function ConfigContent() {
 					alert("Please complete the " + id + " switch's info!");
 					return;
 				}
-				protocalInfo.switches.push(_switch);
+				protocolInfo.switches.push(_switch);
 			}
 		});
 		
-		return protocalInfo;
+		return protocolInfo;
 	}
 	
 	function createMainView() {

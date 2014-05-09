@@ -9,21 +9,22 @@ import javax.ws.rs.core.MediaType;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import cn.edu.nju.software.rp.factory.ConfigControllerFactory;
 import cn.edu.nju.software.rp.testcontrol.ConfigController;
 
 @Path("/test")
 public class TestResource {
-	private ConfigController configureController;
+	private ConfigController configController;
 	
 	public TestResource() {
-		configureController = ConfigController.getInstance();
+		configController = ConfigControllerFactory.getConfigController();;
 	}
 	
 	@POST
 	@Path("/testResults")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public JSONObject testProtocal(JSONObject testInfo) {
+	public JSONObject testProtocol(JSONObject testInfo) {
 		JSONObject response = new JSONObject();
 		if(testInfo != null) {
 			String id = testInfo.getString("id");
@@ -31,7 +32,7 @@ public class TestResource {
 			if(id !=null && testCmds != null) {
 				JSONObject testLog = new JSONObject(); 	
 					
-				String logStr = configureController.test(testInfo);
+				String logStr = configController.test(testInfo);
 				
 				testLog.put("id", id);
 				testLog.put("log", logStr);

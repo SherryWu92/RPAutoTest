@@ -13,7 +13,7 @@ import javax.xml.bind.Marshaller;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import cn.edu.nju.software.rp.model.Protocal;
+import cn.edu.nju.software.rp.model.Protocol;
 import cn.edu.nju.software.rp.xmlmodel.TestCases;
 
 public class ConfigController {
@@ -28,7 +28,7 @@ public class ConfigController {
 		return configController;
 	}
 	
-	public JSONArray config(Protocal p){
+	public JSONArray config(Protocol p){
 		DeviceMap deviceMap = DeviceMap.getInstance();
 		deviceMap.setMap(p);
 		XMLDataMapper xmlMap = new XMLDataMapper();
@@ -60,7 +60,7 @@ public class ConfigController {
 		return dm.test(host, password, list_commands);
 	}
 	
-	public String getXMLString(Protocal p){
+	public String getXMLString(Protocol p){
 		XMLDataMapper xmlMap = new XMLDataMapper();
 		TestCases cases = xmlMap.mapping(p);
 		String tempFilePath = GlobalVariables.TEMP_XML_PATH_FOR_EXPORT;
@@ -87,12 +87,12 @@ public class ConfigController {
 		return null;
 	}
 	
-	public Protocal parseXML(String xmlcontent){
+	public Protocol parseXML(String xmlcontent){
 		XMLDataMapper mapper = new XMLDataMapper();
 		DeviceMediator dm = new DeviceMediator();
 		try {
 			TestCases t = dm.unmarshal(xmlcontent);
-			Protocal p = mapper.mapping(t);
+			Protocol p = mapper.mapping(t);
 			return p;
 		} catch (JAXBException e) {
 			e.printStackTrace();

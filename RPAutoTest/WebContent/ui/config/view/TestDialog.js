@@ -153,7 +153,7 @@ function TestDialog(p_connInfo) {
 			testInfo.id = p_connInfo.id;
 			testInfo.testCmds = testCmds;
 			
-			ServiceClient.invoke("configure/testResults", testInfo).done(function(p_results){
+			ServiceClient.invoke("test/testResults", testInfo).done(function(p_results){
 				var a_log = p_results;
 				var id = a_log.id;
 				var logStr = a_log.log;

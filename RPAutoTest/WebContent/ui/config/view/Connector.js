@@ -4,13 +4,13 @@
 //        Endpoint : "Rectangle"
 //    });
 
-    var color1 = "#225588";
+    var color = "#225588";
     var anchors = [[0.7, 0, -1, 0], [1, 0.5, 0, 1], [0.7, 1, -1, 0], [ 0.4, 0.5, 0, 1 ]];//["TopCenter", "RightMiddle", "BottomCenter", "LeftMiddle"];
-    var exampleEndpoint1 = {
+    var exampleEndpoint = {
         endpoint:["Dot", { radius:4 }],
-        paintStyle:{ fillStyle:color1 },
+        paintStyle:{ fillStyle:color },
         isSource:true,
-        connectorStyle:{ strokeStyle:color1, lineWidth:2 },
+        connectorStyle:{ strokeStyle:color, lineWidth:2 },
         connector: ["Straight", { curviness:63 } ],
         maxConnections:1,
         isTarget:true
@@ -21,7 +21,7 @@
     	    anchors = p_anchors;
     	}
         for (var i = 0; i < anchors.length; i++) {
-            jsPlumb.addEndpoint(p_toId, { anchor:anchors[i]}, exampleEndpoint1);                       
+            jsPlumb.addEndpoint(p_toId, { anchor:anchors[i]}, exampleEndpoint);                       
         }
         jsPlumb.draggable(jsPlumb.getSelector(".device"), {containment: "#canvas"});         
     }
@@ -46,7 +46,7 @@
     		target: targetId,
     		anchors: [anchors[sPointIndex], anchors[tPointIndex]],
             endpoint:["Dot", { radius:4 }],
-            paintStyle:{ strokeStyle:color1, lineWidth:2  },
+            paintStyle:{ strokeStyle:color, lineWidth:2  },
             connector: ["Straight", { curviness:63 } ]           
     	});
     }
