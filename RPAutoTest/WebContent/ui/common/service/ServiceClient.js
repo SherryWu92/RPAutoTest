@@ -1,10 +1,9 @@
-/**
- * 
- */
+
+//ServiceClient实现对AJAX请求的封装
 
 function ServiceClient()
 {
- 
+	//发出AJAX请求时调用此方法
     this.invoke = function(p_path, p_params, p_options)
     {
     	var options = $.extend({
@@ -33,14 +32,14 @@ function ServiceClient()
     	});
     	return def;
     };
-    
+    //得到完整的服务地址
     function getServiceUrl(p_path)
     {	
     	var url = "/RPAutoTest/api/" + p_path;
 
     	return url;
     };
-
+    //转换请求参数
     function convertParams(p_params)
     {
     	if (p_params != null)

@@ -22,7 +22,7 @@ function Home(p_configView) {
 	}
 	
 	function createHeader() {
-		var $HeaderDiv = $('<div class="header"><span class="title">Router Protocol Auto Configuration and Test</span></div>');
+		var $HeaderDiv = $('<div class="header"><span class="title">Router Protocol Auto Configuration</span></div>');
 		$homeDiv.append($HeaderDiv);
 	}
 		
@@ -79,8 +79,8 @@ function Home(p_configView) {
 		$showViewDiv = $('<div class="showView"></div>');
 		
 		var $img_topo = $("<img id='showView' src='ui/common/res/images/topology.png'>");
-		var $img_run = $("<img id='showView' src='ui/common/res/images/topology1.png'>"); 
-		var $img_test = $("<img id='showView' src='ui/common/res/images/topology.png'>");
+		var $img_run = $("<img id='showView' src='ui/common/res/images/runLogView.png'>"); 
+		var $img_test = $("<img id='showView' src='ui/common/res/images/testLogView.png'>");
 		imgs.push($img_topo);
 		imgs.push($img_run);
 		imgs.push($img_test);

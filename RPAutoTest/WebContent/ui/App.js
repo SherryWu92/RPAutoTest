@@ -2,14 +2,14 @@
  * 
  */
 includeJS("ui/common/view/Home.js");
-includeJS("ui/config/view/ConfigureView.js");
+includeJS("ui/config/view/ConfigView.js");
 //includeJS("ui/runLog/view/RunLogView.js");
 
 window.onload = function () {
-	var configureView = new ConfigureView();
+	var configView = new ConfigView();
 //	var runLogView = new RunLogView();
 	
-	var homeView = new Home(configureView);	
+	var homeView = new Home(configView);	
 	homeView.show();	
 };
 

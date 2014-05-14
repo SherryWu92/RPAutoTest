@@ -7,7 +7,7 @@ includeJS("ui/config/view/ConfigContent.js");
 var configHeader = null;
 var configContent = null;
 
-function ConfigureView() {
+function ConfigView() {
 	
 	jsPlumb.ready(function() {
 		includeJS("ui/config/view/Connector.js");
@@ -18,12 +18,12 @@ function ConfigureView() {
 }
 
 
-ConfigureView.prototype.hide = function() {
+ConfigView.prototype.hide = function() {
 	configHeader.detach();
 	configContent.detach();
 };
 
-ConfigureView.prototype.show = function(p_homeView) {
+ConfigView.prototype.show = function(p_homeView) {
 	var body = $("body");
 	body.append(configHeader);
 	body.append(configContent);

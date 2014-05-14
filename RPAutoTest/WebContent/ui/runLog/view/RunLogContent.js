@@ -20,10 +20,7 @@ function RunLogContent() {
 	function createMenu() {
 		var $menuUl = $("<ul id='menu'></ul>");
 		
-		var $settingLi = $("<li><a href='#' id='menu-setting' class=''>Setting</a></li>");
 		var $saveLi = $("<li><a href='#' id='menu-save' class=''>Save</a></li>");		
-
-		$menuUl.append($settingLi);
 		$menuUl.append($saveLi);
 
 		$contentDiv.append($menuUl);	
@@ -61,7 +58,7 @@ function RunLogContent() {
 				}
 				selId = $(this).find("a").attr("id");
 				$("#" + selId).addClass("sel");			
-				var logStr = runLogArr[selId].replace(/\/r\/n/g,"<br>");
+				var logStr = runLogArr[selId].replace(/\r\n/g,"<br>");
 				$logsView.html(logStr);
 			});
 		}		

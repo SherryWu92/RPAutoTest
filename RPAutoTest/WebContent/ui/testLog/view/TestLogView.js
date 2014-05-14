@@ -5,7 +5,7 @@ var testLogheader = null;
 var testLogContent = null;
 
 function TestLogView() {		
-	testLogHeader = new Header("Run Log");
+	testLogHeader = new Header("Test Log");
 	testLogContent = new TestLogContent();	
 }
 

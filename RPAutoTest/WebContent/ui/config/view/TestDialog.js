@@ -157,7 +157,7 @@ function TestDialog(p_connInfo) {
 				var a_log = p_results;
 				var id = a_log.id;
 				var logStr = a_log.log;
-				logStr = logStr.replace(/\/r\/n/g,"<br>");
+				logStr = logStr.replace(/\r\n/g,"<br>");
 				console.debug(logStr);
 				var testLog = JSON.parse(localStorage.getItem("TestLog"));
 				if(testLog == null) {
